@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NumberOfAttacks>k__BackingField: 2
   <ComponentData>k__BackingField:
-  - rid: 1340176490298867712
-  - rid: 1340176490298867715
-  - rid: 1340176490298867713
-  - rid: 1340176490298867716
-  - rid: 1340176490298867714
-  - rid: 1340176490298867717
+  - rid: 1340176200389886053
+  - rid: 1340176200389886054
+  - rid: 1340176249168593022
+  - rid: 1340176332512559329
+  - rid: 1340176332512559394
+  - rid: 1340176332512559622
   references:
     version: 2
     RefIds:
-    - rid: 1340176490298867712
-      type: {class: ToolSpriteData, ns: FlamingOrange.Tools.Components, asm: Assembly-CSharp}
+    - rid: 1340176200389886053
+      type: {class: ToolSpriteData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:
         name: ToolSpriteData
         attackData:
@@ -42,8 +42,8 @@ MonoBehaviour:
           - {fileID: -1850394791, guid: 75834a3d3c794c9409403939a1451db2, type: 3}
           - {fileID: -1418905628, guid: 75834a3d3c794c9409403939a1451db2, type: 3}
           - {fileID: -397009062, guid: 75834a3d3c794c9409403939a1451db2, type: 3}
-    - rid: 1340176490298867713
-      type: {class: MovementData, ns: FlamingOrange.Tools.Components, asm: Assembly-CSharp}
+    - rid: 1340176200389886054
+      type: {class: MovementData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:
         name: MovementData
         attackData:
@@ -51,17 +51,8 @@ MonoBehaviour:
           <MoveForce>k__BackingField: 500
         - name: Attack 2
           <MoveForce>k__BackingField: 600
-    - rid: 1340176490298867714
-      type: {class: KnockBackData, ns: FlamingOrange.Tools.Components, asm: Assembly-CSharp}
-      data:
-        name: KnockBackData
-        attackData:
-        - name: Attack 1
-          <Strength>k__BackingField: 10
-        - name: Attack 2
-          <Strength>k__BackingField: 10
-    - rid: 1340176490298867715
-      type: {class: ActionHitboxData, ns: FlamingOrange.Tools.Components, asm: Assembly-CSharp}
+    - rid: 1340176249168593022
+      type: {class: ActionHitboxData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:
         name: ActionHitboxData
         attackData:
@@ -74,7 +65,7 @@ MonoBehaviour:
             width: 3.04
             height: 2.34
         - name: Attack 2
-          Debug: 0
+          Debug: 1
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: -0.68
@@ -83,9 +74,9 @@ MonoBehaviour:
             height: 3.06
         <DetectableLayer>k__BackingField:
           serializedVersion: 2
-          m_Bits: 1
-    - rid: 1340176490298867716
-      type: {class: DamageData, ns: FlamingOrange.Tools.Components, asm: Assembly-CSharp}
+          m_Bits: 55
+    - rid: 1340176332512559329
+      type: {class: DamageData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:
         name: DamageData
         attackData:
@@ -93,7 +84,16 @@ MonoBehaviour:
           <Amount>k__BackingField: 10
         - name: Attack 2
           <Amount>k__BackingField: 10
-    - rid: 1340176490298867717
-      type: {class: ToolSpriteRotatorData, ns: FlamingOrange.Tools.Components, asm: Assembly-CSharp}
+    - rid: 1340176332512559394
+      type: {class: KnockBackData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
+      data:
+        name: KnockBackData
+        attackData:
+        - name: Attack 1
+          <Strength>k__BackingField: 10
+        - name: Attack 2
+          <Strength>k__BackingField: 10
+    - rid: 1340176332512559622
+      type: {class: ToolSpriteRotatorData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:
         name: ToolSpriteRotatorData
