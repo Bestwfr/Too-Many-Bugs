@@ -13,7 +13,6 @@ namespace FlamingOrange.CoreSystem
         
         public void Damage(DamageData data)
         {
-            Debug.Log(core.transform.parent.name + "Damage!");
             _stats.Comp?.DecreaseHealth(data.Amount);
             _particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
         }
