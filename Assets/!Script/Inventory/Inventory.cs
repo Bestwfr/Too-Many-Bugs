@@ -7,19 +7,66 @@ namespace FlamingOrange
     public class Inventory : MonoBehaviour
     {
         [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
-        [SerializeField] private ItemData itemToAdd;
-        [SerializeField] private ItemData itemToRemove;
+        [SerializeField] private GameObject inventory;
 
-        public bool IsPedestalSelectionEnabled { get; private set; }
+        [SerializeField] private CoinManager _coinManager;
 
-        public void SetPedestalSelectionEnabled(bool enabled)
+        void OnEnable()
         {
-            IsPedestalSelectionEnabled = enabled;
+            RegisterSlotCallbacks();
         }
 
-        void Awake()
+        void OnDisable()
         {
-            SetPedestalSelectionEnabled(false);
+            UnregisterSlotCallbacks();
+        }
+
+        private void RegisterSlotCallbacks()
+        {
+            if (slots == null) return;
+
+            for (int i = 0; i < slots.Count; i++)
+            {
+                var slot = slots[i];
+                if (slot == null) continue;
+
+                slot.OnClicked.AddListener(Buy);
+            }
+        }
+
+        private void UnregisterSlotCallbacks()
+        {
+            if (slots == null) return;
+
+            for (int i = 0; i < slots.Count; i++)
+            {
+                var slot = slots[i];
+                if (slot == null) continue;
+
+                slot.OnClicked.RemoveListener(Buy);
+            }
+        }
+
+        private void Buy(ItemData buying)
+        {
+            if (buying == null) return;
+
+            if (buying is SO_Unit && buying.ItemCost <= _coinManager.coins)
+            {
+                Debug.Log("unit");
+                _coinManager.RemoveCoins(buying.ItemCost);
+                return;
+            }
+
+            if (buying is SO_Boost && buying.ItemCost <= _coinManager.coins)
+            {
+                Debug.Log("boost");
+                _coinManager.RemoveCoins(buying.ItemCost);
+            }
+            else
+            {
+                return;
+            }
         }
 
         public void AddItem(ItemData itemToAdd)
@@ -143,10 +190,21 @@ namespace FlamingOrange
             }
         }
 
+        void Start()
+        {
+            inventory.SetActive(false);
+        }
+
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E)) AddItem(itemToAdd);
-            if (Input.GetKeyDown(KeyCode.Q)) RemoveItem(itemToRemove);
+            if (Input.GetKeyDown(KeyCode.E) && !inventory.activeSelf)
+            {
+                inventory.SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && inventory.activeSelf)
+            {
+                inventory.SetActive(false);
+            }
         }
     }
 }

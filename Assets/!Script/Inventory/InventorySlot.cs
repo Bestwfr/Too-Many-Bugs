@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace FlamingOrange
 {
@@ -15,7 +16,8 @@ namespace FlamingOrange
         public ItemData itemInSlot;
         public ItemClickedEvent OnClicked;
 
-        [SerializeField] private TextMeshProUGUI stackText;
+        [SerializeField, FormerlySerializedAs("stackText")]
+        private TextMeshProUGUI itemCostText;
 
         [Header("only use when item in slot is stackable")]
         public int CurrentStack;
@@ -33,7 +35,11 @@ namespace FlamingOrange
         void Start()
         {
             _showImage = transform.GetChild(0).GetComponent<Image>();
-            stackText.gameObject.SetActive(false);
+
+            if (itemCostText != null)
+            {
+                itemCostText.gameObject.SetActive(false);
+            }
         }
 
         void Update()
@@ -42,20 +48,25 @@ namespace FlamingOrange
             {
                 _showImage.sprite = itemInSlot.Icon;
 
-                if (itemInSlot.IsStackable && CurrentStack > 1)
+                if (itemCostText != null)
                 {
-                    stackText.gameObject.SetActive(true);
-                    stackText.text = CurrentStack.ToString();
-                }
-                else
-                {
-                    stackText.gameObject.SetActive(false);
+                    bool hasCost = itemInSlot.ItemCost > 0;
+                    itemCostText.gameObject.SetActive(hasCost);
+
+                    if (hasCost)
+                    {
+                        itemCostText.text = itemInSlot.ItemCost.ToString();
+                    }
                 }
             }
             else
             {
                 _showImage.sprite = null;
-                stackText.gameObject.SetActive(false);
+
+                if (itemCostText != null)
+                {
+                    itemCostText.gameObject.SetActive(false);
+                }
             }
         }
     }
