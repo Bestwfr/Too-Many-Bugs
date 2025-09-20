@@ -1,0 +1,51 @@
+﻿using FlamingOrange.CoreSystem;
+using UnityEngine;
+
+namespace FlamingOrange.Tools.Components
+{
+    public class ToolSpriteRotator : ToolComponent
+    {
+        private GameObject _toolSprite;
+        private float _angleDegree;
+        
+        private CoreSystem.Movement _movement;
+        
+        private void HandleAttackInput(Vector2 direction)
+        {
+            direction.Normalize();
+            _angleDegree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            
+            if (direction.x < -0.01f)
+                _angleDegree -= 180f;
+        }
+
+        private void HandleRotateSprite()
+        {
+            if (_toolSprite == null) return;
+            
+            _toolSprite.transform.rotation = Quaternion.Euler(0f, 0f, _angleDegree);
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            
+            _toolSprite = tool.ToolSpriteGameObject;
+
+            
+            _movement = Core.GetCoreComponent<CoreSystem.Movement>();
+            
+            InputManager.Instance.OnAttack += HandleAttackInput;
+
+            eventHandler.OnRotateSprite += HandleRotateSprite;
+        }
+     
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            InputManager.Instance.OnAttack -= HandleAttackInput;
+            
+            eventHandler.OnRotateSprite -= HandleRotateSprite;
+        }
+    }
+}

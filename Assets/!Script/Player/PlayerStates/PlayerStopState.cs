@@ -1,0 +1,39 @@
+﻿using UnityEngine;
+
+public class PlayerStopState : PlayerState
+{
+    private Vector2 _inputDirection;
+    private bool _dashInput;
+
+    public PlayerStopState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    {
+    }
+    
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        _inputDirection = player.Input.MovementDirection;
+        _dashInput = player.Input.DashInput;
+        
+        Movement?.UpdateFacing(_inputDirection);
+        
+        if (_inputDirection != Vector2.zero)
+        {
+            stateMachine.ChangeState(player.MoveState);
+        }
+        else if (isAnimationFinished)
+        {
+            stateMachine.ChangeState(player.IdleState);
+        }
+        else if (_dashInput && player.DashState.CheckIfCanDash())
+        {
+            stateMachine.ChangeState(player.DashState);
+        }
+        else if (player.TryConsumeAttack(out Vector2 dir))
+        {
+            player.AttackState.RequestDirection(dir);
+            stateMachine.ChangeState(player.AttackState);
+        }
+    }
+}
