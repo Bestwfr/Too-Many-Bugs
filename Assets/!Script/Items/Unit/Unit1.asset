@@ -20,4 +20,4 @@ MonoBehaviour:
   WaveRequirement: 0
   IsStackable: 0
   MaxStack: 0
-  UnitPrefab: {fileID: 0}
+  UnitSprite: {fileID: 6348005638595316411, guid: b0d7bab2390e9a74483b63f4bf09b59f, type: 3}

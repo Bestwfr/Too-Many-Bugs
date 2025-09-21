@@ -17,5 +17,7 @@ namespace FlamingOrange
         [ShowIf("IsStackable")]
         public int MaxStack;
 
+        public virtual void Use(IItemUseContext context) {}
+
     }
 }

@@ -10,6 +10,7 @@ namespace FlamingOrange
         [SerializeField] private GameObject inventory;
 
         [SerializeField] private CoinManager _coinManager;
+        [SerializeField] private BuildModeController buildModeController;
 
         void OnEnable()
         {
@@ -55,6 +56,8 @@ namespace FlamingOrange
             {
                 Debug.Log("unit");
                 _coinManager.RemoveCoins(buying.ItemCost);
+                buying.Use(buildModeController);
+                inventory.SetActive(false);
                 return;
             }
 
