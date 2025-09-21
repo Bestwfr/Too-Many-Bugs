@@ -43,6 +43,12 @@ namespace FlamingOrange.CoreSystem
             Rb.linearVelocity = _workspace;
             CurrentVelocity = _workspace;
         }
+        
+        public void MoveTowards(Vector2 target, float speed)
+        {
+            Vector2 newPos = Vector2.MoveTowards(Rb.position, target, speed * Time.fixedDeltaTime);
+            Rb.MovePosition(newPos);
+        }
 
         public void AddForce(Vector2 force)
         {
@@ -74,7 +80,7 @@ namespace FlamingOrange.CoreSystem
         {
             if (direction.x > 0.01f) return 1;
             if (direction.x < -0.01f) return -1;
-            return FacingX; // keep last if no strong horizontal
+            return FacingX;
         }
         private void FlipX(Vector2 direction)
         {
