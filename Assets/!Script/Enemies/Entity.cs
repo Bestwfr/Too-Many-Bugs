@@ -1,26 +1,37 @@
 ﻿using System;
 using FlamingOrange.CoreSystem;
+using FlamingOrange.Enemies.StateMachine;
 using UnityEngine;
 
 namespace FlamingOrange.Enemies
 {
-    public class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour
     {
+        
+        public FiniteStateMachine StateMachine { get; private set; }
+        
         public Core Core { get; private set; }
+        
+        public Animator Anim { get; private set;}
 
-        private void Awake()
+        public virtual void Awake()
         {
             Core = GetComponentInChildren<Core>();
+            Anim = GetComponent<Animator>();
+
+            StateMachine = new FiniteStateMachine();
         }
 
-        private void Update()
+        public virtual void Update()
         {
             Core.LogicUpdate();
+            StateMachine.CurrentState.LogicUpdate();
         }
 
-        private void FixedUpdate()
+        public virtual void FixedUpdate()
         {
             Core.PhysicsUpdate();
+            StateMachine.CurrentState.PhysicsUpdate();
         }
     }
 }
