@@ -15,7 +15,6 @@ namespace FlamingOrange
 
         private SO_Unit activeUnit;
         private GameObject ghost;
-        private SpriteRenderer ghostSR;
         private bool isPlacing;
         private readonly HashSet<Vector2Int> occupied = new HashSet<Vector2Int>();
 
@@ -74,20 +73,21 @@ namespace FlamingOrange
             }
         }
 
-        private void Place(Vector2Int cell, Vector3 position, Sprite sprite)
+        private void Place(Vector2Int cell, Vector3 position, GameObject prefab)
         {
-            var go = new GameObject($"Unit_{activeUnit.ItemName}_{cell.x}_{cell.y}");
-            go.transform.SetParent(placedParent, true);
-            go.transform.position = position;
-
-            var sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = sprite;
-
+            var go = Instantiate(prefab, position, Quaternion.identity, placedParent);
+            go.name = $"Unit_{activeUnit.ItemName}_{cell.x}_{cell.y}";
             occupied.Add(cell);
+
+            var units = go.GetComponentsInChildren<IUnit>(true);
+            for (int i = 0; i < units.Length; i++)
+            {
+                units[i].InitializeFromSO(activeUnit);
+                units[i].Activate();
+            }
 
             ExitBuildMode();
         }
-
 
         private void ExitBuildMode()
         {
@@ -95,31 +95,32 @@ namespace FlamingOrange
             activeUnit = null;
             if (ghost) Destroy(ghost);
             ghost = null;
-            ghostSR = null;
         }
 
-        private void SpawnGhost(Sprite sprite)
+        private void SpawnGhost(GameObject prefab)
         {
-            ghost = new GameObject("BuildGhost");
-            ghost.transform.SetParent(transform, true);
-            ghostSR = ghost.AddComponent<SpriteRenderer>();
-            ghostSR.sprite = sprite;
-            ghostSR.sortingOrder = short.MaxValue;
-            var c = ghostSR.color; c.a = ghostAlpha; ghostSR.color = c;
-
-            var cols = ghost.GetComponentsInChildren<Collider2D>(true);
-            for (int i = 0; i < cols.Length; i++) cols[i].enabled = false;
+            ghost = Instantiate(prefab, transform);
+            ghost.name = "BuildGhost";
+            foreach (var sr in ghost.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                var c = sr.color; c.a = ghostAlpha; sr.color = c;
+                sr.sortingOrder = short.MaxValue;
+            }
+            foreach (var col in ghost.GetComponentsInChildren<Collider2D>(true)) col.enabled = false;
+            foreach (var col3D in ghost.GetComponentsInChildren<Collider>(true)) col3D.enabled = false;
         }
 
         private void SetGhostTint(bool valid)
         {
-            if (!ghostSR) return;
-            var c = ghostSR.color;
-            c.a = ghostAlpha;
-            c.r = valid ? 1f : 1f;
-            c.g = valid ? 1f : 0.5f;
-            c.b = valid ? 1f : 0.5f;
-            ghostSR.color = c;
+            foreach (var sr in ghost.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                var c = sr.color;
+                c.a = ghostAlpha;
+                c.r = 1f;
+                c.g = valid ? 1f : 0.5f;
+                c.b = valid ? 1f : 0.5f;
+                sr.color = c;
+            }
         }
 
         private Vector2Int WorldToCell(Vector3 world)
