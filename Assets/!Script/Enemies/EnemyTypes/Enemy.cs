@@ -1,4 +1,5 @@
 ﻿using FlamingOrange.Enemies.StateMachine;
+using FlamingOrange.Utilities;
 using UnityEngine;
 
 namespace FlamingOrange.Enemies
@@ -12,6 +13,10 @@ namespace FlamingOrange.Enemies
         
         public GameObject Target { get; private set; }
         public GameObject BaseObject { get; private set; }
+        
+        public LayerMask AttackLayer { get; private set; }
+        
+        public Timer AttackCooldown { get; private set; }
 
         public override void Awake()
         {
@@ -19,12 +24,16 @@ namespace FlamingOrange.Enemies
             
             BaseObject = GameObject.FindGameObjectWithTag("Base");
             
+            AttackCooldown = new Timer(Data.attackFrequencySecond);
+            
             ChaseState = new ChaseState(this, StateMachine, "Chase", this);
             AttackState = new AttackState(this, StateMachine, "Attack", this);
         }
 
         private void Start()
         {
+            AttackLayer = Data.whatIsPlayer | Data.whatIsBase;
+            
             Target = BaseObject;
             StateMachine.Initialize(ChaseState);
         }
@@ -51,8 +60,7 @@ namespace FlamingOrange.Enemies
 
         public bool CheckInAttackRange()
         {
-            var attackLayer = Data.whatIsPlayer | Data.whatIsBase;
-            return Physics2D.OverlapCircle(transform.position, Data.attackDistance, attackLayer);
+            return Physics2D.OverlapCircle(transform.position, Data.attackDistance, AttackLayer);
         }
     }
 }

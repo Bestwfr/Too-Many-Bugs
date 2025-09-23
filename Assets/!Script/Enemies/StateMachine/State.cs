@@ -13,6 +13,8 @@ namespace FlamingOrange.Enemies.StateMachine
         protected float startTime;
         
         protected string animBoolName;
+        
+        public string StateName => animBoolName;
 
         public State(Entity entity, FiniteStateMachine stateMachine, string animBoolName)
         {

@@ -19,5 +19,6 @@ namespace FlamingOrange.Enemies
         [Header("Attack State")] 
         public float attackDamage = 2f;
         public float attackDistance = 1f;
+        public float attackFrequencySecond = 1f;
     }
 }

@@ -11,7 +11,16 @@ namespace FlamingOrange.Utilities
         private float _duration;
         private float _targetTime;
         
-        private bool isActive;
+        public bool IsActive { get; private set; }
+        
+        public float RemainingTime
+        {
+            get
+            {
+                if (!IsActive) return 0f;
+                return Mathf.Max(0f, _targetTime - Time.time);
+            }
+        }
 
         public Timer(float duration)
         {
@@ -22,22 +31,21 @@ namespace FlamingOrange.Utilities
         {
             _startTime = Time.time;
             _targetTime = _startTime + _duration;
-            isActive = true;
+            IsActive = true;
         }
 
         public void StopTimer()
         {
-            isActive = false;
+            IsActive = false;
         }
 
         public void Tick()
         {
-            if (!isActive) return;
+            if (!IsActive) return;
             
             if (Time.time > _targetTime)
             {
                 OnTimerDone?.Invoke();
-                StopTimer();
             }
         }
     }

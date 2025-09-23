@@ -74,7 +74,7 @@ MonoBehaviour:
             height: 3.06
         <DetectableLayer>k__BackingField:
           serializedVersion: 2
-          m_Bits: 55
+          m_Bits: 128
     - rid: 1340176332512559329
       type: {class: DamageData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:

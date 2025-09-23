@@ -1,4 +1,6 @@
-﻿namespace FlamingOrange.Combat.Damage
+﻿using UnityEngine;
+
+namespace FlamingOrange.Combat.Damage
 {
     public interface IDamageable
     {

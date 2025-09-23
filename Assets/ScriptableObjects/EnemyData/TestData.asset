@@ -22,5 +22,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   movementVelocity: 5
-  attackDamage: 0
-  attackDistance: 1
+  attackDamage: 1
+  attackDistance: 1.5
+  attackFrequencySecond: 1

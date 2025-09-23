@@ -41,6 +41,6 @@ namespace FlamingOrange.Enemies.StateMachine
                 stateMachine.ChangeState(_enemy.AttackState);
             }
         }
-
+        
     }
 }
