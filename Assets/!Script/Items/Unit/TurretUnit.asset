@@ -24,9 +24,10 @@ MonoBehaviour:
   health: 100
   damage: 10
   range: 10
-  rotationSpeed: 360
   fireInterval: 0.5
   bulletSpeed: 8
   bulletLifetime: 3
   bulletSprite: {fileID: 0}
   bulletPrefab: {fileID: 3951528738739695065, guid: f4ed991ca1822d64c8c733f8c1924985, type: 3}
+  bulletScale: {x: 1, y: 1}
+  rotationOffset: 0
