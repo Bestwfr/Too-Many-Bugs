@@ -48,9 +48,9 @@ MonoBehaviour:
         name: MovementData
         attackData:
         - name: Attack 1
-          <MoveForce>k__BackingField: 500
-        - name: Attack 2
           <MoveForce>k__BackingField: 600
+        - name: Attack 2
+          <MoveForce>k__BackingField: 700
     - rid: 1340176249168593022
       type: {class: ActionHitboxData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:
@@ -90,9 +90,9 @@ MonoBehaviour:
         name: KnockBackData
         attackData:
         - name: Attack 1
-          <Strength>k__BackingField: 10
+          <Strength>k__BackingField: 12
         - name: Attack 2
-          <Strength>k__BackingField: 10
+          <Strength>k__BackingField: 14
     - rid: 1340176332512559622
       type: {class: ToolSpriteRotatorData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:

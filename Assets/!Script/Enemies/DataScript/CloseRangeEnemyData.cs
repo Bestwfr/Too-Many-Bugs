@@ -3,8 +3,8 @@ using UnityEngine.Serialization;
 
 namespace FlamingOrange.Enemies
 {
-    [CreateAssetMenu(fileName = "newEnemyData", menuName = "Data/Enemy Data/Base Enemy", order = 0)]
-    public class EnemyData : ScriptableObject
+    [CreateAssetMenu(fileName = "newCloseRangeEnemy", menuName = "Data/Enemy Data/Close Range Enemy", order = 0)]
+    public class CloseRangeEnemyData : ScriptableObject
     {
         [Header("Properties")]
         public float health = 40f;
@@ -20,5 +20,8 @@ namespace FlamingOrange.Enemies
         public float attackDamage = 2f;
         public float attackDistance = 1f;
         public float attackFrequencySecond = 1f;
+        
+        [Header("Interrupted State")]
+        public float interruptMultiplier = 0.7f;
     }
 }
