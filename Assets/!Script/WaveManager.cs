@@ -61,7 +61,9 @@ namespace FlamingOrange
         {
             float angle = Random.Range(0f, Mathf.PI * 2f);
             Vector2 spawnPos = (Vector2)transform.position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * spawnRadius;
-            Instantiate(EnemyList[0], spawnPos, Quaternion.identity, transform);
+            GameObject enemyPrefab = EnemyList[Random.Range(0, EnemyList.Count)];
+            GameObject enemyInstance = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, transform);
+            ApplyDifficultyToEnemy(enemyInstance);
         }
 
         void CheckKilled()
@@ -90,6 +92,11 @@ namespace FlamingOrange
             _enemiesPerWave = Mathf.Clamp(baseCount + jitter, minEnemiesPerWave, maxEnemiesPerWave);
         }
 
+        void ApplyDifficultyToEnemy(GameObject enemy)
+        {
+            // change variables inside enemy before spawning by difficulty level
+        }
+
         void OnDrawGizmos()
         {
             Gizmos.color = gizmoColor;
@@ -103,5 +110,7 @@ namespace FlamingOrange
                 prevPoint = nextPoint;
             }
         }
+
+        
     }
 }

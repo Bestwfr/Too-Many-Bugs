@@ -8369,6 +8369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyList:
   - {fileID: 2887114671727587067, guid: 334475e90f4849e4e82ec18c1824787a, type: 3}
+  - {fileID: 2887114671727587067, guid: 7f9ec9c51a74d8f48a01acc1404d60ec, type: 3}
   maxWave: 10
   currentWave: 0
   spawnRadius: 5.93
@@ -8376,6 +8377,12 @@ MonoBehaviour:
   isWaveFinished: 0
   InvtervalbetweenWaves: 5
   difficultyPerSecond: 0.1
+  minEnemiesPerWave: 4
+  maxEnemiesPerWave: 45
+  midWave: 10
+  rampSteepness: 0.35
+  permaDifficultyBoost: 0.5
+  randomness: 0.1
   gizmoColor: {r: 0.2, g: 0.7, b: 1, a: 0.8}
   _difficultyLevel: 0
   _enemiesPerWave: 5
