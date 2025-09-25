@@ -44,7 +44,7 @@ namespace FlamingOrange.Enemies.StateMachine
             _enemyCloseRange.AttackCooldown.Tick();
             
             if (!_enemyCloseRange.IsTargetInAttackRange)
-                stateMachine.ChangeState(_enemyCloseRange.CloseChaseState);
+                stateMachine.ChangeState(_enemyCloseRange.ChaseState);
         }
 
         private void Attack()

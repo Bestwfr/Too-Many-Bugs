@@ -54,7 +54,7 @@ namespace FlamingOrange.Enemies.StateMachine
             
             if (!_enemyLongRange.IsTargetInAttackRange)
             {
-                stateMachine.ChangeState(_enemyLongRange.LongChaseState);
+                stateMachine.ChangeState(_enemyLongRange.ChaseState);
             }
         }
 

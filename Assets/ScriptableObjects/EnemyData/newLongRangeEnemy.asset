@@ -21,13 +21,13 @@ MonoBehaviour:
   whatIsBase:
     serializedVersion: 2
     m_Bits: 64
-  movementVelocity: 3
-  retreatVelocity: 4
-  distanceToMaintain: 3
+  movementVelocity: 4
   attackDamage: 1
-  attackDistance: 5
+  attackDistance: 6
   attackFrequencySecond: 0.7
+  interruptMultiplier: 1.2
+  retreatVelocity: 2.5
+  distanceToMaintain: 5
   projectilePrefab: {fileID: 2105167302917884084, guid: 50801c68ba4dad1478cb4f0d6e048567, type: 3}
   projectileSpeed: 7
   projectileLifeTime: 2
-  interruptMultiplier: 1.2

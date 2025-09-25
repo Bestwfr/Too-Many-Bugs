@@ -1,33 +1,38 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace FlamingOrange.Enemies
 {
     [CreateAssetMenu(fileName = "newLongRangeEnemy", menuName = "Data/Enemy Data/Long Range Enemy", order = 1)]
-    public class LongRangeEnemyData : ScriptableObject
+    public class LongRangeEnemyData : EnemyData
     {
-        [Header("Properties")]
-        public float health = 50f;
-        public float playerAggroDistance = 3f;
-        public float playerDeaggroDistance = 8f;
-        public LayerMask whatIsPlayer;
-        public LayerMask whatIsBase;
-        
-        [Header("Chase State")]
-        public float movementVelocity = 3f;
-        public float retreatVelocity = 5f;
-        public float distanceToMaintain = 4f;
-
-        [Header("Attack State")] 
-        public float attackDamage = 1f;
-        public float attackDistance = 5f;
-        public float attackFrequencySecond = 1f; 
         [Space(5)]
-        public GameObject projectilePrefab;
-        public float projectileSpeed = 5f;
-        public float projectileLifeTime = 5f;
+        [HorizontalLine]
+        [Header("Long Range Specific")]
+        public float retreatVelocity = 4f;
+        public float distanceToMaintain = 3f;
         
-        [Header("Interrupted State")]
-        public float interruptMultiplier = 1.2f;
+        [Header("Projectile Properties")]
+        public GameObject projectilePrefab;
+        public float projectileSpeed = 7f;
+        public float projectileLifeTime = 2f;
+        
+        private void OnEnable()
+        {
+            SetDefaultValues();
+        }
+
+        private void SetDefaultValues()
+        {
+            if (health == 0f) health = 50f;
+            if (playerAggroDistance == 0f) playerAggroDistance = 3f;
+            if (playerDeaggroDistance == 0f) playerDeaggroDistance = 8f;
+            if (movementVelocity == 0f) movementVelocity = 3f;
+            if (attackDamage == 0f) attackDamage = 1f;
+            if (attackDistance == 0f) attackDistance = 5f;
+            if (attackFrequencySecond == 0f) attackFrequencySecond = 0.7f;
+            if (interruptMultiplier == 0f) interruptMultiplier = 1.2f;
+        }
     }
 }
