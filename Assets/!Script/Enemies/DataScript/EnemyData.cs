@@ -7,27 +7,27 @@ namespace FlamingOrange.Enemies
     public abstract class EnemyData : ScriptableObject
     {
         [Header("Properties")]
-        public float health;
-        public float playerAggroDistance;
-        public float playerDeaggroDistance;
-        public LayerMask whatIsPlayer;
-        public LayerMask whatIsBase;
+        [field: SerializeField] public float Health { get; protected set; }
+        [field: SerializeField] public float PlayerAggroDistance { get; protected set; }
+        [field: SerializeField] public float PlayerDeaggroDistance { get; protected set; }
+        [field: SerializeField] public LayerMask WhatIsPlayer { get; protected set; }
+        [field: SerializeField] public LayerMask WhatIsBase { get; protected set; }
         
-        [Header("Chase State")]
-        public float movementVelocity;
+        [Header("Chase State")] 
+        [field: SerializeField] public float MovementVelocity { get; protected set; }
 
-        [Header("Attack State")] 
-        public float attackDamage;
-        public float attackDistance;
-        public float attackFrequencySecond;
+        [Header("Attack State")]  
+        [field: SerializeField] public float AttackDamage { get; protected set; }
+        [field: SerializeField] public float AttackDistance { get; protected set; }
+        [field: SerializeField] public float AttackFrequencySecond { get; protected set; }
         
         [Header("Interrupted State")]
-        public float interruptMultiplier;
+        [field: SerializeField] public float InterruptMultiplier { get; protected set; }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
-            whatIsPlayer = LayerMask.GetMask("Player");
-            whatIsBase = LayerMask.GetMask("Base");
+            WhatIsPlayer = LayerMask.GetMask("Player");
+            WhatIsBase = LayerMask.GetMask("Base");
         }
     }
 }

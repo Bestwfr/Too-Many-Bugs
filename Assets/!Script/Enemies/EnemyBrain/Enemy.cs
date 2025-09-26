@@ -24,23 +24,23 @@ namespace FlamingOrange.Enemies
             base.Awake();
 
             BaseObject = GameObject.FindGameObjectWithTag("Base");
-            AttackCooldown = new Timer(Data.attackFrequencySecond);
+            AttackCooldown = new Timer(Data.AttackFrequencySecond);
         }
 
         protected override void Interrupt(float damageTaken)
         {
-            base.Interrupt(damageTaken * Data.interruptMultiplier);
+            base.Interrupt(damageTaken * Data.InterruptMultiplier);
         }
 
         protected virtual void Start()
         {
-            AttackLayer = Data.whatIsPlayer | Data.whatIsBase;
+            AttackLayer = Data.WhatIsPlayer | Data.WhatIsBase;
             Target = BaseObject;
         }
         
         protected bool CheckPlayerInAggroRange()
         {
-            var player = Physics2D.OverlapCircle(transform.position, Data.playerAggroDistance, Data.whatIsPlayer);
+            var player = Physics2D.OverlapCircle(transform.position, Data.PlayerAggroDistance, Data.WhatIsPlayer);
             if (player == null) return false;
 
             var hurtBox = player.gameObject.GetComponent<IDamageable>();
@@ -54,7 +54,7 @@ namespace FlamingOrange.Enemies
 
         protected bool CheckPlayerOutAggroRange()
         {
-            var player = Physics2D.OverlapCircle(transform.position, Data.playerDeaggroDistance, Data.whatIsPlayer);
+            var player = Physics2D.OverlapCircle(transform.position, Data.PlayerDeaggroDistance, Data.WhatIsPlayer);
             if (player == null)
                 Target = BaseObject;
 
@@ -64,7 +64,7 @@ namespace FlamingOrange.Enemies
         protected bool CheckInAttackRange()
         {
             var layerMask = 1 << Target.layer;
-            return Physics2D.OverlapCircle(transform.position, Data.attackDistance, layerMask) != null;
+            return Physics2D.OverlapCircle(transform.position, Data.AttackDistance, layerMask) != null;
         }
         
         public virtual void AllRangeCheck()

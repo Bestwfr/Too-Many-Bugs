@@ -71,13 +71,13 @@ namespace FlamingOrange.Enemies.StateMachine
         {
             var target = Physics2D.OverlapCircle(
                 _enemyLongRange.transform.position, 
-                _enemyLongRange.Data.distanceToMaintain, 
+                _enemyLongRange.Data.DistanceToMaintain, 
                 _enemyLongRange.AttackLayer
             );
             
             Vector2 awayDir = (_enemyLongRange.transform.position - target.transform.position).normalized;
             
-            Movement.SetVelocity(awayDir * _enemyLongRange.Data.retreatVelocity);
+            Movement.SetVelocity(awayDir * _enemyLongRange.Data.RetreatVelocity);
         }
 
     }

@@ -38,6 +38,7 @@ namespace FlamingOrange.CoreSystem
             {
                 _isKnockBackActive =  false;
                 _movement.Comp.CanSetVelocity = true;
+                _movement.Comp.SetVelocity(Vector2.zero);
             }
         }
     }

@@ -1,4 +1,6 @@
 ﻿using FlamingOrange.Combat.Damage;
+using FlamingOrange.Combat.KnockBack;
+using FlamingOrange.CoreSystem;
 using FlamingOrange.Utilities;
 using UnityEngine;
 
@@ -49,8 +51,13 @@ namespace FlamingOrange.Enemies.StateMachine
 
         private void Attack()
         {
+            var direction = _enemyCloseRange.Target.transform.position - core.Root.transform.position;
+            
             var damageable = _enemyCloseRange.Target.GetComponent<IDamageable>();
-            damageable?.Damage(new DamageData(_enemyCloseRange.Data.attackDamage, _enemyCloseRange.gameObject));
+            damageable?.Damage(new DamageData(_enemyCloseRange.Data.AttackDamage, core.Root));
+            
+            var knockBackable = _enemyCloseRange.Target.GetComponent<IKnockBackable>();
+            knockBackable?.KnockBack(new KnockBackData(direction.normalized, _enemyCloseRange.Data.KnockBack, core.Root));
             
             _enemyCloseRange.Anim.SetTrigger("AttackTrigger");
 

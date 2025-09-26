@@ -30,7 +30,7 @@ namespace FlamingOrange.Enemies.StateMachine
 
             var target = _enemy.Target.transform;
 
-            Movement.MoveTowards(target.position, _enemy.Data.movementVelocity);
+            Movement.MoveTowards(target.position, _enemy.Data.MovementVelocity);
 
             if (_enemy.IsTargetInAttackRange)
             {

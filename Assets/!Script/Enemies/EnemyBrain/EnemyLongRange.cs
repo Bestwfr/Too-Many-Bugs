@@ -31,25 +31,28 @@ namespace FlamingOrange.Enemies
 
         private bool CheckPreferDistance()
         {
-            return Physics2D.OverlapCircle(transform.position, Data.distanceToMaintain, AttackLayer);
+            return Physics2D.OverlapCircle(transform.position, Data.DistanceToMaintain, AttackLayer);
         }
 
         public void ShootAtTarget()
         {
-            Vector2 direction = Target.transform.position - transform.position;
-            GameObject projectile = Object.Instantiate(Data.projectilePrefab, transform.position, Quaternion.identity);
+            var direction = Target.transform.position - transform.position;
+            var projectile = GameObject.Instantiate(Data.ProjectilePrefab, transform.position, Quaternion.identity);
 
             if (projectile.TryGetComponent(out EnemyProjectile proj))
             {
-                proj.Damage = Data.attackDamage;
-                proj.Lifetime = Data.projectileLifeTime;
+                proj.Damage = Data.AttackDamage;
+                proj.Lifetime = Data.ProjectileLifeTime;
+                proj.Knockback = Data.ProjectileKnockBack;
                 proj.Source = gameObject;
             }
 
             if (projectile.TryGetComponent(out Rigidbody2D rb))
             {
-                rb.linearVelocity = direction.normalized * Data.projectileSpeed;
+                rb.linearVelocity = direction.normalized * Data.ProjectileSpeed;
             }
+            
+            Debug.Log("shoot!");
         }
     }
 }
