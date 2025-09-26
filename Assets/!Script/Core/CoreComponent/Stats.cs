@@ -53,6 +53,13 @@ namespace FlamingOrange.CoreSystem
                 sr.color = Color.white;
             }
         }
+        
+        public void InitializeHealth(float health)
+        {
+            maxHealth = health;
+            CurrentHealth = maxHealth;
+        }
+
 
         public void DecreaseHealth(float amount)
         {
@@ -66,7 +73,6 @@ namespace FlamingOrange.CoreSystem
             {
                 CurrentHealth = 0;
                 OnHealthZero?.Invoke();
-                Debug.Log("Health is zero!!");
             }
         }
 

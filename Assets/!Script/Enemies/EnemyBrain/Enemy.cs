@@ -1,4 +1,5 @@
 ﻿using FlamingOrange.Combat.Damage;
+using FlamingOrange.CoreSystem;
 using FlamingOrange.Enemies.StateMachine;
 using FlamingOrange.Utilities;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace FlamingOrange.Enemies
         public override void Awake()
         {
             base.Awake();
+            Core.GetCoreComponent<Stats>().InitializeHealth(Data.Health);
 
             BaseObject = GameObject.FindGameObjectWithTag("Base");
             AttackCooldown = new Timer(Data.AttackFrequencySecond);

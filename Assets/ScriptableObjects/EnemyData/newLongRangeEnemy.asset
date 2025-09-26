@@ -12,22 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b58cbe66404ff1bf7808b7111b9bf5, type: 3}
   m_Name: newLongRangeEnemy
   m_EditorClassIdentifier: 
-  health: 50
-  playerAggroDistance: 3
-  playerDeaggroDistance: 8
-  whatIsPlayer:
+  <Health>k__BackingField: 50
+  <PlayerAggroDistance>k__BackingField: 3
+  <PlayerDeaggroDistance>k__BackingField: 8
+  <WhatIsPlayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
-  whatIsBase:
+  <WhatIsBase>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
-  movementVelocity: 4
-  attackDamage: 1
-  attackDistance: 6
-  attackFrequencySecond: 0.7
-  interruptMultiplier: 1.2
-  retreatVelocity: 2.5
-  distanceToMaintain: 5
-  projectilePrefab: {fileID: 2105167302917884084, guid: 50801c68ba4dad1478cb4f0d6e048567, type: 3}
-  projectileSpeed: 7
-  projectileLifeTime: 2
+  <MovementVelocity>k__BackingField: 4
+  <AttackDamage>k__BackingField: 1
+  <AttackDistance>k__BackingField: 6
+  <AttackFrequencySecond>k__BackingField: 0.7
+  <InterruptMultiplier>k__BackingField: 1.2
+  <RetreatVelocity>k__BackingField: 2.5
+  <DistanceToMaintain>k__BackingField: 5
+  <ProjectilePrefab>k__BackingField: {fileID: 2105167302917884084, guid: 50801c68ba4dad1478cb4f0d6e048567, type: 3}
+  <ProjectileSpeed>k__BackingField: 7
+  <ProjectileLifeTime>k__BackingField: 2
+  <ProjectileKnockBack>k__BackingField: 1.5

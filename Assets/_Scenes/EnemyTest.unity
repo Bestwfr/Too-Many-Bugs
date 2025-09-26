@@ -361,6 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxKnockbackTime: 0.2
+  <CanTakeKnockBack>k__BackingField: 1
+  <IsKnockBackActive>k__BackingField: 0
 --- !u!114 &81129913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
+  <CanTakeDamage>k__BackingField: 1
 --- !u!1 &104016103
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +743,92 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 245.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &176053685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176053688}
+  - component: {fileID: 176053687}
+  - component: {fileID: 176053689}
+  - component: {fileID: 176053686}
+  m_Layer: 0
+  m_Name: DebugManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &176053686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176053685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8df2cec44dbe4048a9b4470693851b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fontSize: 30
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  margin: {x: 12, y: 10}
+  boxSize: {x: 320, y: 85}
+  updateInterval: 0.25
+  targetFrameRate: -1
+  vSyncCount: 0
+--- !u!114 &176053687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176053685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653bbd11a2a85f04a9304d9789c99a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1299175733}
+  fontSize: 45
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  screenPosition: {x: 10, y: 10}
+  boxSize: {x: 377.3, y: 117.44}
+--- !u!4 &176053688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176053685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.863221, y: -31.91619, z: -0.15033306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &176053689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176053685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874644de59322934d850abb0bbd1f4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1299175733}
+  fontSize: 35
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  screenPosition: {x: 30, y: 70}
 --- !u!1 &216340276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxKnockbackTime: 0.2
+  <CanTakeKnockBack>k__BackingField: 1
+  <IsKnockBackActive>k__BackingField: 0
 --- !u!58 &587509762
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1196,6 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
+  <CanTakeDamage>k__BackingField: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1909,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: []
+--- !u!1 &935644994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935644995}
+  - component: {fileID: 935644996}
+  m_Layer: 3
+  m_Name: Invincibility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935644995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935644994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2147360463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935644996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935644994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd6b73fc8d0407289c762f14cf89523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitIframeDuration: 0.15
+  <IsIframeActive>k__BackingField: 0
 --- !u!1 &1045173502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 3aa5ffd6fd54cd54396e6d90b49f1528, type: 2}
-  <Target>k__BackingField: {fileID: 0}
 --- !u!50 &1141012903
 Rigidbody2D:
   serializedVersion: 5
@@ -2310,7 +2447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 3aa5ffd6fd54cd54396e6d90b49f1528, type: 2}
-  <Target>k__BackingField: {fileID: 0}
 --- !u!50 &1168246042
 Rigidbody2D:
   serializedVersion: 5
@@ -2986,6 +3122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxKnockbackTime: 0.2
+  <CanTakeKnockBack>k__BackingField: 1
+  <IsKnockBackActive>k__BackingField: 0
 --- !u!114 &1432128551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2999,6 +3137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
+  <CanTakeDamage>k__BackingField: 1
 --- !u!1 &1489175351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,7 +3360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac18f8daebda488daf551cb05793d00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxKnockbackTime: 0.2
+  maxKnockbackTime: 0.15
+  <CanTakeKnockBack>k__BackingField: 1
+  <IsKnockBackActive>k__BackingField: 0
 --- !u!114 &1769702553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3235,6 +3376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
+  <CanTakeDamage>k__BackingField: 1
 --- !u!1 &1784739233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,7 +3557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3c3969ce18d544ead0982b77a5e36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 999
+  maxHealth: 50
   <CurrentHealth>k__BackingField: 0
   damageFlash: 1
   flashColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3981,6 +4123,7 @@ Transform:
   - {fileID: 1789133510}
   - {fileID: 1968142492}
   - {fileID: 1330313819}
+  - {fileID: 935644995}
   m_Father: {fileID: 1299175738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2147360464
@@ -4012,3 +4155,4 @@ SceneRoots:
   - {fileID: 73723021}
   - {fileID: 876698218}
   - {fileID: 18316517}
+  - {fileID: 176053688}

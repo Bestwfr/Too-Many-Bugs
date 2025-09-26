@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfde9c6087754dc8aad3a3691be615ad, type: 3}
   m_Name: CloseTestData
   m_EditorClassIdentifier: 
-  health: 0
-  playerAggroDistance: 2
-  playerDeaggroDistance: 7
-  whatIsPlayer:
+  <Health>k__BackingField: 40
+  <PlayerAggroDistance>k__BackingField: 2
+  <PlayerDeaggroDistance>k__BackingField: 7
+  <WhatIsPlayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
-  whatIsBase:
+  <WhatIsBase>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
-  movementVelocity: 5
-  attackDamage: 1
-  attackDistance: 1.5
-  attackFrequencySecond: 1
+  <MovementVelocity>k__BackingField: 5
+  <AttackDamage>k__BackingField: 1
+  <AttackDistance>k__BackingField: 1.5
+  <AttackFrequencySecond>k__BackingField: 1
+  <InterruptMultiplier>k__BackingField: 0.7
+  <KnockBack>k__BackingField: 3
