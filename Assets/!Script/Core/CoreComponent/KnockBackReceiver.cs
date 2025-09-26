@@ -1,4 +1,5 @@
 ﻿using FlamingOrange.Combat.KnockBack;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace FlamingOrange.CoreSystem
@@ -6,8 +7,9 @@ namespace FlamingOrange.CoreSystem
     public class KnockBackReceiver : CoreComponent, IKnockBackable
     {
         [SerializeField] private float maxKnockbackTime = 0.2f;
+        [field: SerializeField, ReadOnly] public bool CanTakeKnockBack { get; set; } = true;
         
-        private bool _isKnockBackActive;
+        [ReadOnly] private bool _isKnockBackActive;
         private float _knockBackStartTime;
         
         private CoreComp<Movement> _movement;
@@ -26,6 +28,8 @@ namespace FlamingOrange.CoreSystem
 
         public void KnockBack(KnockBackData data)
         {
+            if (!CanTakeKnockBack) return;
+            
             _movement.Comp.SetVelocity(data.Angle * data.Strength);
             _movement.Comp.CanSetVelocity = false;
             _isKnockBackActive = true;

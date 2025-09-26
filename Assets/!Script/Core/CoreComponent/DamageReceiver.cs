@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using FlamingOrange.Combat.Damage;
+using NaughtyAttributes;
 
 
 namespace FlamingOrange.CoreSystem
@@ -7,12 +8,15 @@ namespace FlamingOrange.CoreSystem
     public class DamageReceiver : CoreComponent, IDamageable
     {
         [SerializeField] private GameObject damageParticles;
+        [field: SerializeField, ReadOnly] public bool CanTakeDamage { get; set; } = true;
         
         private CoreComp<Stats> _stats;
         private CoreComp<ParticleManager> _particleManager;
         
         public void Damage(DamageData data)
         {
+            if (!CanTakeDamage) return;
+            
             _stats.Comp?.DecreaseHealth(data.Amount);
             _particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
         }

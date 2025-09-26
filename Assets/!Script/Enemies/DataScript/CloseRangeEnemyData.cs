@@ -7,7 +7,7 @@ namespace FlamingOrange.Enemies
     [CreateAssetMenu(fileName = "newCloseRangeEnemy", menuName = "Data/Enemy Data/Close Range Enemy", order = 0)]
     public class CloseRangeEnemyData : EnemyData
     {
-        [Header("Close Range Specific")]
+        [field: Header("Close Range Specific")]
         [field: SerializeField] 
         public float KnockBack { get; private set; } = 3f;
         

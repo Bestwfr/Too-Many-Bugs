@@ -9,11 +9,11 @@ namespace FlamingOrange.Enemies
     {
         [field: Space(5)]
         [field: HorizontalLine]
-        [Header("Long Range Specific")]
+        [field: Header("Long Range Specific")]
         [field: SerializeField] public float RetreatVelocity { get; private set; } = 4f;
         [field: SerializeField] public float DistanceToMaintain { get; private set; } = 3f;
         
-        [Header("Projectile Properties")]
+        [field: Header("Projectile Properties")]
         [field: SerializeField] public GameObject ProjectilePrefab { get; private set; }
         [field: SerializeField] public float ProjectileSpeed { get; private set; } = 7f;
         [field: SerializeField] public float ProjectileLifeTime { get; private set; } = 2f;

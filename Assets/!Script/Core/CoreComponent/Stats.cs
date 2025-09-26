@@ -11,7 +11,7 @@ namespace FlamingOrange.CoreSystem
         public event Action<float> OnHealthDecreased;
     
         [SerializeField] private float maxHealth;
-        [field: SerializeField, ReadOnly]public float CurrentHealth { get; private set; }
+        [field: SerializeField, ReadOnly] public float CurrentHealth { get; private set; }
 
         [Header("Damage Flash")]
         [SerializeField] private bool damageFlash = true;
