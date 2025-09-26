@@ -4,8 +4,6 @@ using UnityEngine;
 
     public class Player : MonoBehaviour
     {
-        public static Player Instance;
-
         #region State Variables
 
         public PlayerStateMachine StateMachine { get; private set; }
@@ -44,7 +42,7 @@ using UnityEngine;
 
             tool.SetCore(Core);
             
-            Input = InputManager.Instance;
+            Input = GetComponent<InputManager>();
             
             _attackBuffer = new InputBuffer<Vector2>(0.2f);
             

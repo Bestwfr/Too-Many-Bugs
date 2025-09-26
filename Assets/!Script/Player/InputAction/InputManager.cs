@@ -11,8 +11,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Camera worldCamera;
     [SerializeField] private Transform aimOrigin;
     
-    public static InputManager Instance;
-    
     public Vector2 MovementDirection { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
@@ -26,16 +24,7 @@ public class InputManager : MonoBehaviour
     #region Unity Callbacks Functions
     
     private void Awake()
-    {if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
+    {
         if (worldCamera == null) worldCamera = Camera.main;
     }
 

@@ -8,6 +8,8 @@ namespace FlamingOrange.Tools.Components
         private GameObject _toolSprite;
         private float _angleDegree;
         
+        private InputManager _inputManager;
+        
         private CoreSystem.Movement _movement;
         
         private void HandleAttackInput(Vector2 direction)
@@ -29,13 +31,13 @@ namespace FlamingOrange.Tools.Components
         protected override void Start()
         {
             base.Start();
+            _inputManager = Core.Root.GetComponent<InputManager>();
             
             _toolSprite = tool.ToolSpriteGameObject;
-
             
             _movement = Core.GetCoreComponent<CoreSystem.Movement>();
             
-            InputManager.Instance.OnAttack += HandleAttackInput;
+            _inputManager.OnAttack += HandleAttackInput;
 
             eventHandler.OnRotateSprite += HandleRotateSprite;
         }
@@ -43,7 +45,8 @@ namespace FlamingOrange.Tools.Components
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            InputManager.Instance.OnAttack -= HandleAttackInput;
+            
+            _inputManager.OnAttack -= HandleAttackInput;
             
             eventHandler.OnRotateSprite -= HandleRotateSprite;
         }

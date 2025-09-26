@@ -5,9 +5,10 @@ namespace FlamingOrange.Tools.Components
     public class Movement : ToolComponent<MovementData, AttackMovement>
     {
         private CoreSystem.Movement _coreMovement;
-        
         private CoreSystem.Movement CoreMovement => 
             _coreMovement ? _coreMovement : Core.GetCoreComponent(ref _coreMovement);
+        
+        private InputManager _inputManager;
         
         private Vector2 _inputDirection;
         
@@ -29,11 +30,12 @@ namespace FlamingOrange.Tools.Components
         protected override void Start()
         {
             base.Start();
+            _inputManager = Core.Root.GetComponent<InputManager>();
             
             eventHandler.OnStartMovement += HandleStartMovement;
             eventHandler.OnStopMovement += HandleStopMovement;
 
-            InputManager.Instance.OnAttack += HandleAttackDirection;
+            _inputManager.OnAttack += HandleAttackDirection;
         }
 
         protected override void OnDestroy()
@@ -43,7 +45,7 @@ namespace FlamingOrange.Tools.Components
             eventHandler.OnStartMovement -= HandleStartMovement;
             eventHandler.OnStopMovement -= HandleStopMovement;
             
-            InputManager.Instance.OnAttack -= HandleAttackDirection;
+            _inputManager.OnAttack -= HandleAttackDirection;
         }
     }
 }
