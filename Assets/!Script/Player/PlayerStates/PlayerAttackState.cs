@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerAttackState : PlayerState
 {
     private Vector2 _lookInput;
-    private bool _dashInput;
 
     private Tool _tool;
 
@@ -30,8 +29,6 @@ public class PlayerAttackState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate(); 
-        
-        _dashInput = player.Input.DashInput;
         
         Movement?.UpdateFacing(_lookInput);
 

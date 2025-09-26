@@ -1,6 +1,7 @@
 ﻿using FlamingOrange.Combat.KnockBack;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FlamingOrange.CoreSystem
 {
@@ -8,8 +9,8 @@ namespace FlamingOrange.CoreSystem
     {
         [SerializeField] private float maxKnockbackTime = 0.2f;
         [field: SerializeField, ReadOnly] public bool CanTakeKnockBack { get; set; } = true;
+        [field: SerializeField, ReadOnly] public bool IsKnockBackActive { get; private set; }
         
-        [ReadOnly] private bool _isKnockBackActive;
         private float _knockBackStartTime;
         
         private CoreComp<Movement> _movement;
@@ -32,15 +33,15 @@ namespace FlamingOrange.CoreSystem
             
             _movement.Comp.SetVelocity(data.Angle * data.Strength);
             _movement.Comp.CanSetVelocity = false;
-            _isKnockBackActive = true;
+            IsKnockBackActive = true;
             _knockBackStartTime = Time.time;
         }
 
         private void CheckKnockBack()
         {
-            if (_isKnockBackActive && Time.time >= _knockBackStartTime + maxKnockbackTime)
+            if (IsKnockBackActive && Time.time >= _knockBackStartTime + maxKnockbackTime)
             {
-                _isKnockBackActive =  false;
+                IsKnockBackActive =  false;
                 _movement.Comp.CanSetVelocity = true;
                 _movement.Comp.SetVelocity(Vector2.zero);
             }

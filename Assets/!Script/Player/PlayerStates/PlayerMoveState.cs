@@ -21,7 +21,7 @@ public class PlayerMoveState : PlayerState
         {
             stateMachine.ChangeState(player.StopState);
         }
-        else if (_dashInput && player.DashState.CheckIfCanDash())
+        else if (_dashInput && player.DashState.CheckIfCanDash() && _inputDirection != Vector2.zero)
         {
             stateMachine.ChangeState(player.DashState);
         }

@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿using FlamingOrange.CoreSystem;
+using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
     public bool CanDash { get; private set; }
+    
+    private Invincibility Invincibility { get => _invincibility ?? core.GetCoreComponent(ref _invincibility); }
+    private Invincibility _invincibility;
+    
+    private KnockBackReceiver KnockBackReceiver { get => _knockBackReceiver ?? core.GetCoreComponent(ref _knockBackReceiver); }
+    private KnockBackReceiver _knockBackReceiver;
     
     private float _lastDashTime;
     
@@ -19,8 +26,9 @@ public class PlayerDashState : PlayerState
         CanDash = false;
         player.Input.UseDashInput();
         
-        var dir = player.Input.MovementDirection;
-        _dashDirection = (dir.sqrMagnitude > 0.0001f) ? dir.normalized : Movement.GetFacingDirection();
+        Invincibility.ActivateIFrame(playerData.dashDuration);
+        
+        _dashDirection = player.Input.MovementDirection;
         
         Movement?.UpdateFacing(_dashDirection);
         
@@ -45,6 +53,6 @@ public class PlayerDashState : PlayerState
 
     public bool CheckIfCanDash()
     {
-        return Time.time >= _lastDashTime + playerData.dashCooldown;
+        return Time.time >= _lastDashTime + playerData.dashCooldown && !KnockBackReceiver.IsKnockBackActive && !Invincibility.IsIframeActive;
     }
 }

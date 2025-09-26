@@ -104,6 +104,7 @@ public class InputManager : MonoBehaviour
         }
         else if (ctx.canceled)
         {
+            DashInput = false;
             DashInputStop = true;
         }
     }
