@@ -1,9 +1,10 @@
 ﻿using System;
+using PurrNet;
 using UnityEngine;
 
 namespace FlamingOrange.Tools
 {
-    public class AnimationEventHandler : MonoBehaviour
+    public class AnimationEventHandler : NetworkBehaviour
     {
         public event Action OnFinish;
         public event Action OnStartMovement;
@@ -12,10 +13,10 @@ namespace FlamingOrange.Tools
         public event Action OnRotateSprite;
         
         
-        private void AnimationFinishedTrigger() => OnFinish?.Invoke();
-        private void StartMovementTrigger() => OnStartMovement?.Invoke();
-        private void StopMovementTrigger() => OnStopMovement?.Invoke();
-        private void AttackActionTrigger() => OnAttackAction?.Invoke();
-        private void RotateSpriteTrigger() => OnRotateSprite?.Invoke();
+        private void AnimationFinishedTrigger() { if (isOwner) OnFinish?.Invoke(); }
+        private void StartMovementTrigger() { if (isOwner) OnStartMovement?.Invoke(); }
+        private void StopMovementTrigger() { if (isOwner) OnStopMovement?.Invoke(); }
+        private void AttackActionTrigger() { if (isOwner) OnAttackAction?.Invoke(); }
+        private void RotateSpriteTrigger() { if (isOwner) OnRotateSprite?.Invoke(); }
     }
 }

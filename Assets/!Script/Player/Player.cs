@@ -1,8 +1,10 @@
+using System;
 using FlamingOrange.CoreSystem;
 using FlamingOrange.Tools;
+using PurrNet;
 using UnityEngine;
 
-    public class Player : MonoBehaviour
+    public class Player : NetworkBehaviour
     {
         #region State Variables
 
@@ -54,34 +56,36 @@ using UnityEngine;
             DashState = new PlayerDashState(this, StateMachine, playerData, "Dash");
             AttackState = new PlayerAttackState(this, StateMachine, playerData, "Attack", tool);
         }
-        
-        private void OnEnable()
-        {
-            Input.OnAttack += HandleAttackEvent;
-        }
-
-        private void OnDisable()
-        {
-            Input.OnAttack -= HandleAttackEvent;
-        }
 
         private void Start()
         {
             Anim = GetComponent<Animator>();
             
             StateMachine.Initialize(IdleState);
+            
+            Debug.Log("Owner: " + isOwner);
+            if (isOwner) Input.OnAttack += HandleAttackEvent;
         }
 
         private void Update()
         {
+            if (!isOwner) return;
+            
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
         }
 
         private void FixedUpdate()
         {
+            if (!isOwner) return;
+            
             Core.PhysicsUpdate();
             StateMachine.CurrentState.PhysicsUpdate();
+        }
+
+        private void OnDisable()
+        {
+            if(isOwner) Input.OnAttack -= HandleAttackEvent;
         }
 
         #endregion
@@ -95,7 +99,6 @@ using UnityEngine;
             var canChangeToAttackState = StateMachine.CurrentState == IdleState ||
                                          StateMachine.CurrentState == StopState ||
                                          StateMachine.CurrentState == MoveState;
-
             if (canChangeToAttackState)
             {
                 AttackState.RequestDirection(dir);
@@ -116,8 +119,8 @@ using UnityEngine;
             return _attackBuffer.TryConsume(out dir);
         }
         
-        private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
-        private void AnimationFinishedTrigger() => StateMachine.CurrentState.AnimationFinishedTrigger();
+        private void AnimationTrigger() { if (isOwner) StateMachine.CurrentState.AnimationTrigger(); }
+        private void AnimationFinishedTrigger() { if (isOwner) StateMachine.CurrentState.AnimationFinishedTrigger(); }
 
         #endregion
     }

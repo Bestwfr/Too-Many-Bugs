@@ -20,8 +20,6 @@ namespace FlamingOrange.Enemies
         {
             if (!other.CompareTag("Player")) return;
             
-            Debug.Log(other.name);
-            
             var damageable = other.GetComponent<IDamageable>();
             damageable?.Damage(new DamageData(Damage, Source));
             

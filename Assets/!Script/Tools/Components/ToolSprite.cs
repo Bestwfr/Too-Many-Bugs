@@ -44,6 +44,16 @@ namespace FlamingOrange.Tools.Components
             _currentToolSpriteIndex++;
         }
 
+        public override void UpdateAttackState(bool active, int counter, Vector2? direction)
+        {
+            base.UpdateAttackState(active, counter, direction);
+            if (!active)
+            {
+                _toolSpriteRenderer.sprite = null; 
+            } 
+            _currentToolSpriteIndex = 0; 
+        }
+
         protected override void Start()
         {
             base.Start();

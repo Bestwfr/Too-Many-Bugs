@@ -1,17 +1,17 @@
 using System;
+using PurrNet;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[DefaultExecutionOrder(-2)]
 [RequireComponent(typeof(PlayerInput))]
-public class InputManager : MonoBehaviour
+public class InputManager : NetworkBehaviour
 {
-    
     [Header("References")]
     [SerializeField] private Camera worldCamera;
     [SerializeField] private Transform aimOrigin;
     
     public Vector2 MovementDirection { get; private set; }
+    public Vector2 AttackDirection { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
     public bool AttackInput { get; private set; }
@@ -23,8 +23,12 @@ public class InputManager : MonoBehaviour
 
     #region Unity Callbacks Functions
     
-    private void Awake()
+    protected override void OnSpawned()
     {
+        base.OnSpawned();
+
+        enabled = isOwner;
+        
         if (worldCamera == null) worldCamera = Camera.main;
     }
 
@@ -78,6 +82,7 @@ public class InputManager : MonoBehaviour
                 : (MovementDirection.sqrMagnitude > 0.0001f ? MovementDirection.normalized : Vector2.up);
 
             AttackInput = true;
+            AttackDirection = dir;
             OnAttack?.Invoke(dir);
         }
     }

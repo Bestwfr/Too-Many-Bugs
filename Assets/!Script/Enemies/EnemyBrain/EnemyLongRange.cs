@@ -51,8 +51,6 @@ namespace FlamingOrange.Enemies
             {
                 rb.linearVelocity = direction.normalized * Data.ProjectileSpeed;
             }
-            
-            Debug.Log("shoot!");
         }
     }
 }

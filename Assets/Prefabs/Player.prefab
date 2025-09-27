@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3553714834358973113}
   - component: {fileID: 3574504831217390708}
   - component: {fileID: 2552806947028115402}
-  - component: {fileID: 907940015165718659}
+  - component: {fileID: 3057478728565774031}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -197,6 +197,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b6be76af393846888cc3fe7f51794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   playerData: {fileID: 11400000, guid: 4974553f68f5a05498ea38b5233ff26c, type: 2}
   tool: {fileID: 2253555460890422025}
 --- !u!95 &6744828722153781267
@@ -387,6 +396,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b4a120bb44df24fa6dd0ef26ce206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   worldCamera: {fileID: 0}
   aimOrigin: {fileID: 261342098757246619}
 --- !u!114 &2552806947028115402
@@ -414,13 +432,13 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _syncParent: 1
-  _interpolateSettings: 7
+  _interpolateSettings: 255
   _minBufferSize: 1
   _maxBufferSize: 2
   _characterControllerPatch: 0
   _ownerAuth: 1
   _interpolationTiming: 0
---- !u!114 &907940015165718659
+--- !u!114 &3057478728565774031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -846,6 +864,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a513912eedd4461b01b8e68f6497b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!114 &6801579332122155930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1199,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af9ce77fffa4352aa4317b0e23e702a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   attackCounterResetCooldown: 3
 --- !u!114 &4678787887788377636
 MonoBehaviour:
