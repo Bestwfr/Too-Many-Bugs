@@ -28,7 +28,7 @@ namespace FlamingOrange.Enemies.StateMachine
         {
             base.LogicUpdate();
 
-            var target = _enemy.Target.transform;
+            var target = _enemy.Target.value.transform;
 
             Movement.MoveTowards(target.position, _enemy.Data.MovementVelocity);
 

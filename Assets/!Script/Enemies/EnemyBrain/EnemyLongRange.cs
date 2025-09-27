@@ -1,4 +1,5 @@
 ﻿using FlamingOrange.Enemies.StateMachine;
+using PurrNet;
 using UnityEngine;
 
 namespace FlamingOrange.Enemies
@@ -17,10 +18,10 @@ namespace FlamingOrange.Enemies
             AttackState = new LongAttackState(this, StateMachine, "Attack", this);
         }
 
-        protected override void Start()
+        protected override void OnSpawned()
         {
-            base.Start();
-            StateMachine.Initialize(ChaseState);
+            base.OnSpawned();
+            if (isServer) StateMachine.Initialize(ChaseState);
         }
 
         public override void AllRangeCheck()
@@ -34,9 +35,10 @@ namespace FlamingOrange.Enemies
             return Physics2D.OverlapCircle(transform.position, Data.DistanceToMaintain, AttackLayer);
         }
 
+        [ObserversRpc]
         public void ShootAtTarget()
         {
-            var direction = Target.transform.position - transform.position;
+            var direction = Target.value.transform.position - transform.position;
             var projectile = GameObject.Instantiate(Data.ProjectilePrefab, transform.position, Quaternion.identity);
 
             if (projectile.TryGetComponent(out EnemyProjectile proj))

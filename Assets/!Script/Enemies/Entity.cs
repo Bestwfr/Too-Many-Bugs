@@ -2,61 +2,74 @@
 using FlamingOrange.CoreSystem;
 using FlamingOrange.Enemies.StateMachine;
 using FlamingOrange.Utilities;
+using PurrNet;
 using UnityEngine;
 
 namespace FlamingOrange.Enemies
 {
-    public abstract class Entity : MonoBehaviour
+    public abstract class Entity : NetworkBehaviour
     {
-        
         public FiniteStateMachine StateMachine { get; private set; }
-        
         public InterruptedState InterruptedState { get; private set; }
-        
         public Core Core { get; private set; }
-        
-        public Animator Anim { get; private set;}
-        
+        public NetworkAnimator Anim { get; private set; }
         public Timer AttackCooldown { get; protected set; }
-        
         public float InterruptMultiplier { get; protected set; }
-        
-        private Stats _stats;
+
+        protected Stats Stats { get; private set; }
 
         public virtual void Awake()
         {
             Core = GetComponentInChildren<Core>();
-            Anim = GetComponent<Animator>();
-            
-            _stats = Core.GetCoreComponent<Stats>();
+            Anim = GetComponent<NetworkAnimator>();
+
+            Stats = Core.GetCoreComponent<Stats>();
 
             StateMachine = new FiniteStateMachine();
             InterruptedState = new InterruptedState(this, StateMachine, "Interrupted");
+
+            AttackCooldown ??= new Timer(1f);
         }
 
-        private void OnEnable() => _stats.OnHealthDecreased += Interrupt;
-        private void OnDisable() => _stats.OnHealthDecreased -= Interrupt;
+        private void OnEnable()
+        {
+            if (Stats != null) Stats.OnHealthDecreased += HandleInterrupt;
+        }
+
+        private void OnDisable()
+        {
+            if (Stats != null) Stats.OnHealthDecreased -= HandleInterrupt;
+        }
+
+        private void HandleInterrupt(float multiplier)
+        {
+            if (!isServer) return;
+            Interrupt(multiplier);
+        }
 
         protected virtual void Interrupt(float multiplier)
         {
             if (StateMachine.CurrentState == InterruptedState) return;
-            
+
             InterruptMultiplier = multiplier;
             StateMachine.ChangeState(InterruptedState);
-            
-            AttackCooldown.StopTimer();
+            AttackCooldown?.StopTimer();
         }
 
         public virtual void Update()
         {
+            if (!isServer) return;
+
             Core.LogicUpdate();
-            StateMachine.CurrentState.LogicUpdate();
+            StateMachine.CurrentState?.LogicUpdate();
         }
 
         public virtual void FixedUpdate()
         {
+            if (!isServer) return;
+
             Core.PhysicsUpdate();
-            StateMachine.CurrentState.PhysicsUpdate();
+            StateMachine.CurrentState?.PhysicsUpdate();
         }
     }
 }

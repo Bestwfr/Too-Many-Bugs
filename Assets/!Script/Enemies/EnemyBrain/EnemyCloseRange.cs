@@ -14,10 +14,10 @@ namespace FlamingOrange.Enemies
             AttackState = new CloseAttackState(this, StateMachine, "Attack", this);
         }
 
-        protected override void Start()
+        protected override void OnSpawned()
         {
-            base.Start();
-            StateMachine.Initialize(ChaseState);
+            base.OnSpawned();
+            if (isServer) StateMachine.Initialize(ChaseState);
         }
     }
 }
