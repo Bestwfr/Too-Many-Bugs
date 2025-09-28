@@ -127,8 +127,8 @@ namespace FlamingOrange.Enemies
 
         private bool CheckInAttackRange()
         {
-            if (!isServer) return false;
-
+            if (!isServer && !Target.value) return false;
+            
             var layerMask = 1 << Target.value.layer;
             return Physics2D.OverlapCircle(transform.position, Data.AttackDistance, layerMask) != null;
         }

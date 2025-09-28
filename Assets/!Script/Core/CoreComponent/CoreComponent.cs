@@ -1,9 +1,10 @@
 ﻿using System;
+using PurrNet;
 using UnityEngine;
 
 namespace FlamingOrange.CoreSystem
 {
-    public class CoreComponent : MonoBehaviour
+    public class CoreComponent : NetworkBehaviour
     {
         protected Core core;
 
@@ -15,7 +16,9 @@ namespace FlamingOrange.CoreSystem
             core.AddComponent(this);
         }
         
-        public virtual void LogicUpdate() { }
-        public virtual void PhysicsUpdate() { }
+        protected bool DetermineAuthority() { return hasOwner ? isOwner : isServer; }
+        
+        public virtual void LogicUpdate() { if (!DetermineAuthority()) return; }
+        public virtual void PhysicsUpdate() { if (!DetermineAuthority()) return; }
     }
 }
