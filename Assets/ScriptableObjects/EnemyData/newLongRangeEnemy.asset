@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: newLongRangeEnemy
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 50
-  <PlayerAggroDistance>k__BackingField: 3
+  <PlayerAggroDistance>k__BackingField: 4
   <PlayerDeaggroDistance>k__BackingField: 8
   <WhatIsPlayer>k__BackingField:
     serializedVersion: 2
@@ -27,7 +27,7 @@ MonoBehaviour:
   <AttackFrequencySecond>k__BackingField: 0.7
   <InterruptMultiplier>k__BackingField: 1.2
   <RetreatVelocity>k__BackingField: 2.5
-  <DistanceToMaintain>k__BackingField: 5
+  <DistanceToMaintain>k__BackingField: 4
   <ProjectilePrefab>k__BackingField: {fileID: 2105167302917884084, guid: 50801c68ba4dad1478cb4f0d6e048567, type: 3}
   <ProjectileSpeed>k__BackingField: 7
   <ProjectileLifeTime>k__BackingField: 2

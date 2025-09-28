@@ -51,9 +51,14 @@ namespace FlamingOrange.Enemies.StateMachine
 
         private void Attack()
         {
+            Debug.Log("Attacking: " + _enemyCloseRange.Target.value);
+            
             var direction = _enemyCloseRange.Target.value.transform.position - core.Root.transform.position;
             
             var damageable = _enemyCloseRange.Target.value.GetComponent<IDamageable>();
+            
+            if (damageable == null) Debug.LogWarning($"Target: {_enemyCloseRange.Target} Doesn't have IDamageable!");
+            
             damageable?.Damage(new DamageData(_enemyCloseRange.Data.AttackDamage, core.Root));
             
             var knockBackable = _enemyCloseRange.Target.value.GetComponent<IKnockBackable>();

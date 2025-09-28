@@ -727,7 +727,7 @@ Transform:
   m_GameObject: {fileID: 216340276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.77, y: 3.72, z: 0}
+  m_LocalPosition: {x: -1.21, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d6c1aedfa18ac14c8ba699c52c5730b, type: 3}
   m_Name: 
@@ -1662,6 +1662,7 @@ GameObject:
   - component: {fileID: 1141012906}
   - component: {fileID: 1141012908}
   - component: {fileID: 1141012909}
+  - component: {fileID: 1141012910}
   m_Layer: 7
   m_Name: Circle (1)
   m_TagString: Untagged
@@ -1837,15 +1838,23 @@ MonoBehaviour:
   _directChildren: []
   _networkRules: {fileID: 0}
   _visitiblityRules: {fileID: 0}
-  entity:
+  debugText: {fileID: 2063894957}
+  entityObj:
     _value: {fileID: 0}
-    _ownerAuth: 0
+    _ownerAuth: 1
     _sendIntervalInSeconds: 0
   health:
     _value: 0
     _ownerAuth: 0
     _sendIntervalInSeconds: 0
-  debugText: {fileID: 2063894957}
+  remainingTime:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
+  stateName:
+    _value: 
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
 --- !u!114 &1141012908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1871,7 +1880,7 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _syncParent: 1
-  _interpolateSettings: 7
+  _interpolateSettings: 255
   _minBufferSize: 1
   _maxBufferSize: 2
   _characterControllerPatch: 0
@@ -1902,6 +1911,19 @@ MonoBehaviour:
   _ownerAuth: 0
   _autoSyncParameters: 0
   _dontSyncParameters: []
+--- !u!114 &1141012910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141012901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4a25f43978db04ba93067064613383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 1.25
 --- !u!1 &1168246040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1940,7 @@ GameObject:
   - component: {fileID: 1168246045}
   - component: {fileID: 1168246047}
   - component: {fileID: 1168246048}
+  - component: {fileID: 1168246049}
   m_Layer: 7
   m_Name: Circle (2)
   m_TagString: Untagged
@@ -2093,15 +2116,23 @@ MonoBehaviour:
   _directChildren: []
   _networkRules: {fileID: 0}
   _visitiblityRules: {fileID: 0}
-  entity:
+  debugText: {fileID: 169091641}
+  entityObj:
     _value: {fileID: 0}
-    _ownerAuth: 0
+    _ownerAuth: 1
     _sendIntervalInSeconds: 0
   health:
     _value: 0
     _ownerAuth: 0
     _sendIntervalInSeconds: 0
-  debugText: {fileID: 169091641}
+  remainingTime:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
+  stateName:
+    _value: 
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
 --- !u!114 &1168246047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,6 +2189,19 @@ MonoBehaviour:
   _ownerAuth: 0
   _autoSyncParameters: 0
   _dontSyncParameters: []
+--- !u!114 &1168246049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168246040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4a25f43978db04ba93067064613383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 1.25
 --- !u!1 &1201323593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,7 +2214,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2183,7 +2227,7 @@ Transform:
   m_GameObject: {fileID: 1201323593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46, y: -3.72, z: 0}
+  m_LocalPosition: {x: -9.09, y: 4.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2760,11 +2804,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 261342098757246619, guid: 1bb5a5cfb14a88b4d89dca8d1d221069, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.35
       objectReference: {fileID: 0}
     - target: {fileID: 261342098757246619, guid: 1bb5a5cfb14a88b4d89dca8d1d221069, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 261342098757246619, guid: 1bb5a5cfb14a88b4d89dca8d1d221069, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3188,6 +3232,7 @@ GameObject:
   - component: {fileID: 2103524084}
   - component: {fileID: 2103524087}
   - component: {fileID: 2103524088}
+  - component: {fileID: 2103524089}
   m_Layer: 7
   m_Name: CircleLR
   m_TagString: Untagged
@@ -3337,15 +3382,23 @@ MonoBehaviour:
   _directChildren: []
   _networkRules: {fileID: 0}
   _visitiblityRules: {fileID: 0}
-  entity:
+  debugText: {fileID: 1784739234}
+  entityObj:
     _value: {fileID: 0}
-    _ownerAuth: 0
+    _ownerAuth: 1
     _sendIntervalInSeconds: 0
   health:
     _value: 0
     _ownerAuth: 0
     _sendIntervalInSeconds: 0
-  debugText: {fileID: 1784739234}
+  remainingTime:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
+  stateName:
+    _value: 
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
 --- !u!114 &2103524086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3428,6 +3481,19 @@ MonoBehaviour:
   _ownerAuth: 0
   _autoSyncParameters: 0
   _dontSyncParameters: []
+--- !u!114 &2103524089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103524078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4a25f43978db04ba93067064613383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 1.25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

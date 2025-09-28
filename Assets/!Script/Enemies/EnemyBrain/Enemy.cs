@@ -47,27 +47,56 @@ namespace FlamingOrange.Enemies
         {
             if (!isServer) return;
 
-            if (!ValidateCurrentTarget())
-                CheckPlayerInAggroRange();
-
+            TargetValidation();
+            
             IsPlayerInAggroRange = CheckPlayerInAggroRange();
             IsPlayerOutAggroRange = CheckPlayerOutAggroRange();
             IsTargetInAttackRange = CheckInAttackRange();
         }
         
-        protected bool ValidateCurrentTarget()
+        protected void TargetValidation()
         {
-            if (Target == null || Target.value == BaseObject) return false;
+            if (Target == null || Target.value == null || Target.value == BaseObject)
+                return;
             
             if (((1 << Target.value.layer) & Data.WhatIsPlayer) != 0)
             {
                 float distance = Vector2.Distance(transform.position, Target.value.transform.position);
+                
                 if (distance > Data.AttackDistance)
                 {
-                    return false;
+                    FindNewTarget();
                 }
             }
-            return true;
+        }
+
+        private void FindNewTarget()
+        {
+            var hits = Physics2D.OverlapCircleAll(transform.position, Data.AttackDistance, Data.WhatIsPlayer);
+
+            float closestDistance = float.MaxValue;
+            GameObject closestPlayer = null;
+
+            foreach (var hit in hits)
+            {
+                if (hit == null) continue;
+
+                var candidate = hit.gameObject;
+                var damageable = candidate.GetComponent<IDamageable>();
+                if (damageable == null) continue;
+
+                float distance = Vector2.Distance(transform.position, candidate.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPlayer = candidate;
+                }
+            }
+
+            if (closestPlayer != null)
+            {
+                Target.value = closestPlayer;
+            }
         }
         
         private bool CheckPlayerInAggroRange()
