@@ -1,6 +1,7 @@
 using System;
 using FlamingOrange.CoreSystem;
 using FlamingOrange.Tools;
+using Kinnly;
 using PurrNet;
 using UnityEngine;
 
@@ -90,6 +91,22 @@ using UnityEngine;
 
         #endregion
 
+        #region Network Functions
+
+        protected override void OnSpawned()
+        {
+            base.OnSpawned();
+
+            if (!isOwner) return;
+            
+            if (Camera.main)
+            {
+                Camera.main.GetComponent<CameraSystem>().player = gameObject;
+            }
+        }
+
+        #endregion
+
         #region Event Functions
         
         private void HandleAttackEvent(Vector2 dir)
@@ -108,7 +125,6 @@ using UnityEngine;
 
             _attackBuffer.Buffer(dir);
         }
-
 
         #endregion
 
