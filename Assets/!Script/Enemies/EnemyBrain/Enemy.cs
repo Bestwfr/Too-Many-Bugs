@@ -24,7 +24,6 @@ namespace FlamingOrange.Enemies
         public override void Awake()
         {
             base.Awake();
-            Core.GetCoreComponent<Stats>().InitializeHealth(Data.Health);
             AttackCooldown = new Timer(Data.AttackFrequencySecond);
         }
 
@@ -35,6 +34,13 @@ namespace FlamingOrange.Enemies
             
             AttackLayer = Data.WhatIsPlayer | Data.WhatIsBase;
             Target.value = BaseObject;
+        }
+
+        protected override void OnSpawned()
+        {
+            base.OnSpawned();
+            if (!isServer) return;
+            Core.GetCoreComponent<Stats>().InitializeHealth(Data.Health);
         }
 
         protected override void Interrupt(float damageTaken)

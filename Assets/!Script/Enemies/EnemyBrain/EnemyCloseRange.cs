@@ -27,11 +27,13 @@ namespace FlamingOrange.Enemies
         public void Attack()
         {
             var direction = Target.value.transform.position - Core.Root.transform.position;
-            
-            var damageable = Target.value.GetComponent<IDamageable>();
-            
-            damageable?.Damage(new DamageData(Data.AttackDamage, Core.Root));
-            
+
+            if (isServer)
+            {
+                var damageable = Target.value.GetComponent<IDamageable>();
+                damageable?.Damage(new DamageData(Data.AttackDamage, Core.Root));
+            }
+
             var knockBackable = Target.value.GetComponent<IKnockBackable>();
             knockBackable?.KnockBack(new KnockBackData(direction.normalized, Data.KnockBack, Core.Root));
         }

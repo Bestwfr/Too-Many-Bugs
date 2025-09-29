@@ -29,6 +29,8 @@ namespace FlamingOrange.CoreSystem
         
         public void ActivateIFrame(float duration)
         {
+            if (!DetermineAuthority()) return;
+            
             if (_iFrameCoroutine != null) StopCoroutine(_iFrameCoroutine);
             
             _iFrameCoroutine = StartCoroutine(StartIFrame(duration));
@@ -36,6 +38,8 @@ namespace FlamingOrange.CoreSystem
         
         private void OnHitIFrame(float _)
         {
+            if (!DetermineAuthority()) return;
+            
             if (_iFrameCoroutine != null) StopCoroutine(_iFrameCoroutine);
 
             _iFrameCoroutine = StartCoroutine(StartIFrame(hitIframeDuration));

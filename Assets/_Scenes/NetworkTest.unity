@@ -242,8 +242,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3c3969ce18d544ead0982b77a5e36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 999
-  <CurrentHealth>k__BackingField: 0
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  maxHealth:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
+  <CurrentHealth>k__BackingField:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
   damageFlash: 1
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.15
@@ -360,6 +375,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac18f8daebda488daf551cb05793d00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   maxKnockbackTime: 0.2
   <CanTakeKnockBack>k__BackingField: 1
   <IsKnockBackActive>k__BackingField: 0
@@ -375,6 +399,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be6c9bb1d654c53962fe4ee14a0367c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
   <CanTakeDamage>k__BackingField: 1
 --- !u!1 &141537577
@@ -421,6 +454,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be528674ae8fc9546bf7f77fe6f284d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   deathParticles: []
 --- !u!1 &169091640
 GameObject:
@@ -567,7 +609,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 176053688}
-  - component: {fileID: 176053687}
   - component: {fileID: 176053689}
   - component: {fileID: 176053686}
   m_Layer: 0
@@ -594,25 +635,8 @@ MonoBehaviour:
   margin: {x: 12, y: 10}
   boxSize: {x: 320, y: 85}
   updateInterval: 0.25
-  targetFrameRate: -1
+  targetFrameRate: 1000
   vSyncCount: 0
---- !u!114 &176053687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176053685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 653bbd11a2a85f04a9304d9789c99a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  fontSize: 45
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  screenPosition: {x: 10, y: 10}
-  boxSize: {x: 377.3, y: 117.44}
 --- !u!4 &176053688
 Transform:
   m_ObjectHideFlags: 0
@@ -844,6 +868,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaefad2ef39b066498fb5ec5d2c8ec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &391916245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1105,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac18f8daebda488daf551cb05793d00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   maxKnockbackTime: 0.2
   <CanTakeKnockBack>k__BackingField: 1
   <IsKnockBackActive>k__BackingField: 0
@@ -1123,6 +1165,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be6c9bb1d654c53962fe4ee14a0367c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
   <CanTakeDamage>k__BackingField: 1
 --- !u!1 &619394800
@@ -1253,6 +1304,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d39758438e4a389f3d15d52c61a8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &885188385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1459,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d39758438e4a389f3d15d52c61a8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &930549625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1512,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be528674ae8fc9546bf7f77fe6f284d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   deathParticles: []
 --- !u!1 &1045173502
 GameObject:
@@ -2277,6 +2355,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be528674ae8fc9546bf7f77fe6f284d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   deathParticles: []
 --- !u!1 &1236859939
 GameObject:
@@ -2424,8 +2511,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3c3969ce18d544ead0982b77a5e36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 999
-  <CurrentHealth>k__BackingField: 0
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  maxHealth:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
+  <CurrentHealth>k__BackingField:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
   damageFlash: 1
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.15
@@ -2511,6 +2613,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac18f8daebda488daf551cb05793d00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   maxKnockbackTime: 0.2
   <CanTakeKnockBack>k__BackingField: 1
   <IsKnockBackActive>k__BackingField: 0
@@ -2526,6 +2637,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be6c9bb1d654c53962fe4ee14a0367c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   damageParticles: {fileID: 6362493577020009574, guid: 9b87511bc16e7014cb30419cd5197150, type: 3}
   <CanTakeDamage>k__BackingField: 1
 --- !u!1 &1489175351
@@ -2603,8 +2723,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3c3969ce18d544ead0982b77a5e36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 999
-  <CurrentHealth>k__BackingField: 0
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  maxHealth:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
+  <CurrentHealth>k__BackingField:
+    _value: 0
+    _ownerAuth: 1
+    _sendIntervalInSeconds: 0
   damageFlash: 1
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.15
@@ -2850,6 +2985,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6081371350746916492, guid: 1bb5a5cfb14a88b4d89dca8d1d221069, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2899,6 +3038,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d39758438e4a389f3d15d52c61a8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &1866189913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,6 +3091,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaefad2ef39b066498fb5ec5d2c8ec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &1869701321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2987,6 +3144,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaefad2ef39b066498fb5ec5d2c8ec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &1893796416
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,8 @@ namespace FlamingOrange.CoreSystem
         
         public void SetVelocity(Vector2 velocity)
         {
+            if (!DetermineAuthority()) return;
+            
             _workspace.Set(velocity.x, velocity.y);
             
             if (!CanSetVelocity) return;
@@ -46,12 +48,16 @@ namespace FlamingOrange.CoreSystem
         
         public void MoveTowards(Vector2 target, float speed)
         {
+            if (!DetermineAuthority()) return;
+            
             Vector2 newPos = Vector2.MoveTowards(Rb.position, target, speed * Time.fixedDeltaTime);
             Rb.MovePosition(newPos);
         }
 
         public void AddForce(Vector2 force)
         {
+            if (!DetermineAuthority()) return;
+            
             Rb.AddForce(force);
         }
         

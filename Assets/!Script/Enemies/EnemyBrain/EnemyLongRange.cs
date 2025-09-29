@@ -34,25 +34,21 @@ namespace FlamingOrange.Enemies
         {
             return Physics2D.OverlapCircle(transform.position, Data.DistanceToMaintain, AttackLayer);
         }
-
-        [ObserversRpc]
+        
         public void ShootAtTarget()
         {
             var direction = Target.value.transform.position - transform.position;
-            var projectile = GameObject.Instantiate(Data.ProjectilePrefab, transform.position, Quaternion.identity);
+            var projectile = Instantiate(Data.ProjectilePrefab.GetComponent<EnemyProjectile>(), transform.position, Quaternion.identity);
+            
+            Debug.Log("Shoot");
 
-            if (projectile.TryGetComponent(out EnemyProjectile proj))
-            {
-                proj.Damage = Data.AttackDamage;
-                proj.Lifetime = Data.ProjectileLifeTime;
-                proj.Knockback = Data.ProjectileKnockBack;
-                proj.Source = gameObject;
-            }
-
-            if (projectile.TryGetComponent(out Rigidbody2D rb))
-            {
-                rb.linearVelocity = direction.normalized * Data.ProjectileSpeed;
-            }
+            projectile.Initialize(
+                Data.AttackDamage, 
+                Data.ProjectileLifeTime, 
+                Data.ProjectileKnockBack, 
+                gameObject, 
+                direction.normalized, 
+                Data.ProjectileSpeed);
         }
     }
 }

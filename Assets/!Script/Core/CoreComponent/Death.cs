@@ -1,3 +1,4 @@
+using PurrNet;
 using UnityEngine;
 
 namespace FlamingOrange.CoreSystem
@@ -14,6 +15,7 @@ namespace FlamingOrange.CoreSystem
         private Stats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private Stats stats;
     
+        [ObserversRpc(requireServer:false)]
         public void Die()
         {
             foreach (var particle in deathParticles)

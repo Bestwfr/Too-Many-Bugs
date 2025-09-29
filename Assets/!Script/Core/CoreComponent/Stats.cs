@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using NaughtyAttributes;
+using PurrNet;
 using UnityEngine;
 
 namespace FlamingOrange.CoreSystem
@@ -10,8 +11,8 @@ namespace FlamingOrange.CoreSystem
         public event Action OnHealthZero;
         public event Action<float> OnHealthDecreased;
     
-        [SerializeField] private float maxHealth;
-        [field: SerializeField, ReadOnly] public float CurrentHealth { get; private set; }
+        [SerializeField] private SyncVar<float> maxHealth = new();
+        [field: SerializeField, ReadOnly] public SyncVar<float> CurrentHealth { get; private set; } = new();
 
         [Header("Damage Flash")]
         [SerializeField] private bool damageFlash = true;
@@ -24,15 +25,21 @@ namespace FlamingOrange.CoreSystem
         private SpriteRenderer[] _spriteRenderers;
         private Material[] _materials;
 
-        protected override void Awake()
+        protected override void OnDestroy()
         {
-            base.Awake();
-            CurrentHealth = maxHealth;
+            base.OnDestroy();
+            CurrentHealth.onChangedWithOld -= HandleDamageFlash;
         }
 
-        private void Start()
+        protected override void OnSpawned()
         {
+            base.OnSpawned();
             InitializeMaterial();
+            
+            if (isServer) 
+                CurrentHealth.value = maxHealth.value;
+            
+            CurrentHealth.onChangedWithOld += HandleDamageFlash;
         }
 
         private void InitializeMaterial()
@@ -56,27 +63,48 @@ namespace FlamingOrange.CoreSystem
         
         public void InitializeHealth(float health)
         {
-            maxHealth = health;
-            CurrentHealth = maxHealth;
+            if (!DetermineAuthority()) return;
+            
+            maxHealth.value = health;
+            CurrentHealth.value = maxHealth.value;
         }
 
 
         public void DecreaseHealth(float amount)
         {
-            CurrentHealth -= amount;
+            CurrentHealth.value -= amount;
             OnHealthDecreased?.Invoke(amount);
-            
-            if (damageFlash)
-                StartCoroutine(FlashWhite());
 
-            if (CurrentHealth <= 0)
+            if (CurrentHealth.value <= 0)
             {
-                CurrentHealth = 0;
+                CurrentHealth.value = 0;
                 OnHealthZero?.Invoke();
             }
         }
+        
+        public void ApplyDamage(float amount)
+        {
+            if (!isServer) 
+                DamageServerRpc(amount);
+            else
+                DecreaseHealth(amount);
+        }
 
-        private IEnumerator FlashWhite()
+        [ServerRpc]
+        private void DamageServerRpc(float amount)
+        {
+            DecreaseHealth(amount);
+        }
+
+        private void HandleDamageFlash(float oldValue, float newValue)
+        {
+            if (newValue > oldValue)  return;
+            
+            if (damageFlash && _materials != null && isActiveAndEnabled)
+                StartCoroutine(DamageFlash());
+        }
+
+        private IEnumerator DamageFlash()
         {
             SetFlashColor();
 
@@ -106,7 +134,9 @@ namespace FlamingOrange.CoreSystem
         
         public void IncreaseHealth(float amount)
         {
-            CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, maxHealth);
+            if (!DetermineAuthority()) return;
+            
+            CurrentHealth.value = Mathf.Clamp(CurrentHealth.value + amount, 0, maxHealth.value);
         }
     }
 }

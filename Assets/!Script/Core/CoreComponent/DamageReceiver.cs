@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using FlamingOrange.Combat.Damage;
 using NaughtyAttributes;
+using PurrNet;
 
 
 namespace FlamingOrange.CoreSystem
@@ -17,7 +18,13 @@ namespace FlamingOrange.CoreSystem
         {
             if (!CanTakeDamage) return;
             
-            _stats.Comp?.DecreaseHealth(data.Amount);
+            _stats.Comp?.ApplyDamage(data.Amount);
+            ShowDamageParticles();
+        }
+
+        [ObserversRpc(requireServer:false)]
+        private void ShowDamageParticles()
+        {
             _particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
         }
 
