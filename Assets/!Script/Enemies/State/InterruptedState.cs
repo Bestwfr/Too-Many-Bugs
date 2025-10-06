@@ -10,36 +10,37 @@ namespace FlamingOrange.Enemies.StateMachine
         private Movement Movement { get => _movement ?? core.GetCoreComponent(ref _movement); }
         private Movement _movement;
         
-        private Timer _interruptDurationTimer;
+        private Entity _entity;
         
         public InterruptedState(Entity entity, FiniteStateMachine stateMachine, string animBoolName) : base(entity, stateMachine, animBoolName)
         {
+            _entity = entity;
         }
 
         public override void Enter()
         {
             base.Enter();
-
-            _interruptDurationTimer = new Timer(0.05f * Entity.InterruptMultiplier);
-            _interruptDurationTimer.OnTimerDone += Entity.StateMachine.RevertToPreviousState;
+            _entity.Anim.ResetTrigger("OnHit");
             
-            _interruptDurationTimer.StartTimer();
+            _entity.InterruptDurationTimer.OnTimerDone += Entity.StateMachine.RevertToPreviousState;
+            
+            _entity.InterruptDurationTimer.StartTimer();
         }
 
         public override void Exit()
         {
             base.Exit();
             
-            _interruptDurationTimer.StopTimer();
+            _entity.InterruptDurationTimer.StopTimer();
             
-            _interruptDurationTimer.OnTimerDone -= Entity.StateMachine.RevertToPreviousState;
+            _entity.InterruptDurationTimer.OnTimerDone -= Entity.StateMachine.RevertToPreviousState;
             
             Entity.AttackCooldown.StartTimer();
         }
 
         public override void LogicUpdate()
         {
-            _interruptDurationTimer.Tick();
+            _entity.InterruptDurationTimer.Tick();
         }
     }
 }

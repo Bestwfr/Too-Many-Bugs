@@ -136,7 +136,10 @@ namespace FlamingOrange.Enemies
             if (!isServer && !Target.value) return false;
             
             var layerMask = 1 << Target.value.layer;
-            return Physics2D.OverlapCircle(transform.position, Data.AttackDistance, layerMask) != null;
+
+            bool canAttack = Physics2D.OverlapCircle(transform.position, Data.AttackDistance, layerMask);
+            
+            return canAttack;
         }
     }
 }

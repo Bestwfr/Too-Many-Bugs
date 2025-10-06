@@ -19,13 +19,14 @@ namespace FlamingOrange.CoreSystem
             if (!CanTakeDamage) return;
             
             _stats.Comp?.ApplyDamage(data.Amount);
-            ShowDamageParticles();
+            ShowDamageParticles(data);
         }
 
         [ObserversRpc(requireServer:false)]
-        private void ShowDamageParticles()
+        private void ShowDamageParticles(DamageData data)
         {
-            _particleManager.Comp?.StartParticlesWithRandomRotation(damageParticles);
+            if (data.Direction == Vector2.zero) _particleManager.Comp?.StartParticlesOppositeTo(data.Source,damageParticles);
+            else _particleManager.Comp?.StartParticlesInDirection(damageParticles, data.Direction);
         }
 
         protected override void Awake()

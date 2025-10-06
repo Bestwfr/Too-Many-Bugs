@@ -6,6 +6,8 @@ namespace FlamingOrange.Tools.Components
     public class Damage : ToolComponent<DamageData, AttackDamage>
     {
         private ActionHitBox _hitBox;
+        
+        private CoreSystem.Movement _movement;
 
         private void HandleDetectDamage2D(Collider2D[] colliders)
         {
@@ -13,7 +15,7 @@ namespace FlamingOrange.Tools.Components
             {
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount, Core.Root));
+                    damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount, Core.Root,_movement.GetFacingDirection()));
                 }
             }
         }
@@ -23,6 +25,7 @@ namespace FlamingOrange.Tools.Components
             base.Start();
 
             _hitBox = GetComponent<ActionHitBox>();
+            _movement = Core.GetCoreComponent<CoreSystem.Movement>();
             
             _hitBox.OnDetectedCollider2D += HandleDetectDamage2D;
         }

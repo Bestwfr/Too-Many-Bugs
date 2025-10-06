@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b58cbe66404ff1bf7808b7111b9bf5, type: 3}
   m_Name: newLongRangeEnemy
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 50
+  <Health>k__BackingField: 1000
   <PlayerAggroDistance>k__BackingField: 4
   <PlayerDeaggroDistance>k__BackingField: 8
   <WhatIsPlayer>k__BackingField:

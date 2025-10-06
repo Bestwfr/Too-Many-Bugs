@@ -11,11 +11,14 @@ namespace FlamingOrange.Enemies
     {
         public FiniteStateMachine StateMachine { get; private set; }
         public InterruptedState InterruptedState { get; private set; }
+        
         public Core Core { get; private set; }
         public NetworkAnimator Anim { get; private set; }
+        
         public Timer AttackCooldown { get; protected set; }
+        public Timer InterruptDurationTimer { get; protected set; }
         public float InterruptMultiplier { get; protected set; }
-
+        
         protected Stats Stats { get; private set; }
 
         public virtual void Awake()
@@ -44,12 +47,18 @@ namespace FlamingOrange.Enemies
         private void HandleInterrupt(float multiplier)
         {
             if (!isServer) return;
+            InterruptDurationTimer ??= new Timer(0.05f * multiplier);
             Interrupt(multiplier);
         }
 
         protected virtual void Interrupt(float multiplier)
         {
-            if (StateMachine.CurrentState == InterruptedState) return;
+            if (StateMachine.CurrentState == InterruptedState)
+            {
+                Anim.SetTrigger("OnHit");
+                InterruptDurationTimer.StartTimer();
+                return;
+            }
 
             InterruptMultiplier = multiplier;
             StateMachine.ChangeState(InterruptedState);
