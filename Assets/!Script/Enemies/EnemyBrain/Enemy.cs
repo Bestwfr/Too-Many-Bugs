@@ -20,11 +20,15 @@ namespace FlamingOrange.Enemies
         public bool IsPlayerInAggroRange { get; protected set; }
         public bool IsPlayerOutAggroRange { get; protected set; }
         public bool IsTargetInAttackRange { get; protected set; }
+        
+        private SpriteFlipper spriteFlipper;
 
         public override void Awake()
         {
             base.Awake();
             AttackCooldown = new Timer(Data.AttackFrequencySecond);
+            
+            spriteFlipper = GetComponent<SpriteFlipper>();
         }
 
         private void Start()
@@ -34,6 +38,8 @@ namespace FlamingOrange.Enemies
             
             AttackLayer = Data.WhatIsPlayer | Data.WhatIsBase;
             Target.value = BaseObject;
+
+            spriteFlipper.Target = Target.value;
         }
 
         protected override void OnSpawned()
@@ -42,6 +48,8 @@ namespace FlamingOrange.Enemies
             if (!isServer) return;
             Core.GetCoreComponent<Stats>().InitializeHealth(Data.Health);
         }
+
+        public abstract override void OnReusedFromPool();
 
         protected override void Interrupt(float damageTaken)
         {
@@ -102,6 +110,7 @@ namespace FlamingOrange.Enemies
             if (closestPlayer != null)
             {
                 Target.value = closestPlayer;
+                spriteFlipper.Target = Target.value;
             }
         }
         
@@ -115,6 +124,7 @@ namespace FlamingOrange.Enemies
             if (player.gameObject.GetComponent<IDamageable>() != null)
             {
                 Target.value = player.gameObject;
+                spriteFlipper.Target = Target.value;
                 return true;
             }
 
@@ -126,7 +136,11 @@ namespace FlamingOrange.Enemies
             if (!isServer) return false;
 
             var player = Physics2D.OverlapCircle(transform.position, Data.PlayerDeaggroDistance, Data.WhatIsPlayer);
-            if (!player) Target.value = BaseObject;
+            if (!player)
+            {
+                Target.value = BaseObject;
+                spriteFlipper.Target = Target.value;
+            }
             
             return player;
         }

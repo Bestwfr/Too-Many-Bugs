@@ -20,29 +20,30 @@ namespace FlamingOrange.Enemies
        
         private Timer _destroyTimer;
 
-        private void Start()
-        {
-            _destroyTimer ??= new Timer(_lifetime); 
-            _destroyTimer.StartTimer();
-        }
-
         protected override void OnSpawned()
         {
             base.OnSpawned();
+            if (!isServer) return;
             
+            _destroyTimer ??= new Timer(_lifetime); 
             if (_destroyTimer != null) _destroyTimer.OnTimerDone += Destroy;
+            
+            _destroyTimer.StartTimer();
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            if (!isServer) return;
             
             if (_destroyTimer != null) _destroyTimer.OnTimerDone -= Destroy;
         }
 
         private void Update()
         {
-            _destroyTimer.Tick();
+            if (!isServer) return;
+            
+            _destroyTimer?.Tick();
         }
 
         private void FixedUpdate()

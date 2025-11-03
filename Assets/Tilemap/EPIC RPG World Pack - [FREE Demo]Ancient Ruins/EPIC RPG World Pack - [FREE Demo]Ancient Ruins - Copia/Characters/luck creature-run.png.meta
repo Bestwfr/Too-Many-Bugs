@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      luck creature-run_0: 1022260002012027015
+      luck creature-run_1: -8697102524496118382
+      luck creature-run_2: 3688262645661204690
+      luck creature-run_3: 2362356228316960793
+      luck creature-run_4: -3445266433696413294
+      luck creature-run_5: 8698453270605226352
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -43,6 +43,8 @@ namespace FlamingOrange.Enemies
         {
             if (Stats != null) Stats.OnHealthDecreased -= HandleInterrupt;
         }
+        
+        public abstract void OnReusedFromPool();
 
         private void HandleInterrupt(float multiplier)
         {

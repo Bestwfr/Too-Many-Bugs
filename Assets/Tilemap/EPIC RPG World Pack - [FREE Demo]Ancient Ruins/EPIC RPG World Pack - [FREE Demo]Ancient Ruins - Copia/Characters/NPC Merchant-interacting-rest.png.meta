@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NPC Merchant-interacting-rest_0: -4861367325353692227
+      NPC Merchant-interacting-rest_1: 4278471056733375752
+      NPC Merchant-interacting-rest_2: 9213658792614023285
+      NPC Merchant-interacting-rest_3: 1484822687835137783
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

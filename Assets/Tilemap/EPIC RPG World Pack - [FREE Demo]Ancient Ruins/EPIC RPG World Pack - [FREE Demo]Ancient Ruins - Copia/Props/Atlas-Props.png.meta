@@ -860,7 +860,36 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Atlas-Props_0: 581837735502334001
+      Atlas-Props_1: 2301903489263410247
+      Atlas-Props_10: -4399512955877675311
+      Atlas-Props_11: 7905021179632183267
+      Atlas-Props_12: 792764345981418523
+      Atlas-Props_13: 4219245457281062481
+      Atlas-Props_14: 7799616264029607209
+      Atlas-Props_15: -7254498295432048752
+      Atlas-Props_16: 7063496692871910617
+      Atlas-Props_17: -8493427501635878864
+      Atlas-Props_18: -7026564363564381330
+      Atlas-Props_19: 4971674000946851014
+      Atlas-Props_2: 1484814635656499551
+      Atlas-Props_20: 4218578603323603619
+      Atlas-Props_21: -6118121560029290746
+      Atlas-Props_22: -6079658700753151155
+      Atlas-Props_23: 3183272739976031872
+      Atlas-Props_24: 3418639128770681926
+      Atlas-Props_25: 2921941333663333501
+      Atlas-Props_26: 4475306610202498370
+      Atlas-Props_27: -2424974078922830409
+      Atlas-Props_28: -6108332803496375421
+      Atlas-Props_3: -6688888212080677917
+      Atlas-Props_4: -8252246698553863046
+      Atlas-Props_5: 3008591959390923258
+      Atlas-Props_6: 6254983150056653438
+      Atlas-Props_7: -7461222339902997768
+      Atlas-Props_8: 1754369532183384049
+      Atlas-Props_9: 2719937876579937091
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

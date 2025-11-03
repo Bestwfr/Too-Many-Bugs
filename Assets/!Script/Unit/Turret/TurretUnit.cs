@@ -1,3 +1,4 @@
+using FlamingOrange.Enemies;
 using UnityEngine;
 
 namespace FlamingOrange
@@ -7,15 +8,15 @@ namespace FlamingOrange
         [SerializeField] private string targetTag = "Enemy";
         [SerializeField] private float rescanInterval = 0.2f;
 
-        private SO_TurretUnit data;
+        private TurretData data;
         private float nextShotTime;
         private bool isActive;
         private Transform currentTarget;
         private float nextScanTime;
 
-        public void InitializeFromSO(SO_Unit so)
+        public void InitializeFromSO(TurretData so)
         {
-            data = so as SO_TurretUnit;
+            data = so;
         }
 
         public void Activate()
@@ -73,20 +74,19 @@ namespace FlamingOrange
             if (Time.time < nextShotTime) return;
             nextShotTime = Time.time + data.fireInterval;
 
-            Vector2 dir = (worldPos - transform.position).normalized;
-            float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f + data.rotationOffset;
+            var direction = worldPos - transform.position;
 
-            var b = Instantiate(data.bulletPrefab, transform.position, Quaternion.Euler(0f, 0f, ang));
-            if (data.bulletScale != Vector2.zero) b.transform.localScale = new Vector3(data.bulletScale.x, data.bulletScale.y, 1f);
+            var b = Instantiate(data.ProjectilePrefab, transform.position, Quaternion.identity);
 
-            var sr = b.GetComponentInChildren<SpriteRenderer>();
-            if (sr && data.bulletSprite) sr.sprite = data.bulletSprite;
+            var proj = b.GetComponent<UnitProjectile>();
 
-            var rb = b.GetComponent<Rigidbody2D>();
-            if (rb) rb.linearVelocity = b.transform.up * data.bulletSpeed;
-
-            var bullet = b.GetComponent<UnitBullet>();
-            if (bullet) bullet.Initialize(data.bulletSpeed, data.bulletLifetime, targetTag, data.damage);
+            proj.Initialize(
+                data.damage, 
+                data.ProjectileLifeTime, 
+                data.ProjectileKnockBack, 
+                gameObject, 
+                direction.normalized, 
+                data.ProjectileSpeed);
         }
 
         void OnDrawGizmosSelected()

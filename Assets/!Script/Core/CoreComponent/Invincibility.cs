@@ -51,14 +51,16 @@ namespace FlamingOrange.CoreSystem
             
             _damageReceiver.CanTakeDamage = false;
             yield return new WaitForEndOfFrame();
-            _knockBackReceiver.CanTakeKnockBack = false;
+            if (_knockBackReceiver)
+                _knockBackReceiver.CanTakeKnockBack = false;
 
             yield return new WaitForSeconds(duration);
             
             IsIframeActive = false;
             
             _damageReceiver.CanTakeDamage = true;
-            _knockBackReceiver.CanTakeKnockBack = true;
+            if (_knockBackReceiver)
+                _knockBackReceiver.CanTakeKnockBack = true;
         }
     }
 }

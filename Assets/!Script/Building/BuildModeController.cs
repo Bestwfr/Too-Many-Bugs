@@ -29,7 +29,7 @@ namespace FlamingOrange
             ExitBuildMode();
             activeUnit = unit;
             isPlacing = true;
-            SpawnGhost(unit.UnitSprite);
+            SpawnGhost(unit.unitGameObject);
         }
 
         void Update()
@@ -59,7 +59,7 @@ namespace FlamingOrange
 
             if (placePressed && valid)
             {
-                Place(cell, snapped, activeUnit.UnitSprite);
+                Place(cell, snapped, activeUnit.unitGameObject);
             }
 
             bool cancelPressed =
@@ -82,7 +82,7 @@ namespace FlamingOrange
             var units = go.GetComponentsInChildren<IUnit>(true);
             for (int i = 0; i < units.Length; i++)
             {
-                units[i].InitializeFromSO(activeUnit);
+                units[i].InitializeFromSO(activeUnit.turretData);
                 units[i].Activate();
             }
 

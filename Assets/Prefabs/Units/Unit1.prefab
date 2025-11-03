@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac4d2b74ada19f44bfbf06b726b25b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Base
+  targetTag: Enemy
+  rescanInterval: 0.2
 --- !u!114 &-6868473444321971768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,4 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b531ec0546a458349ad14e0ebfcdfadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 4550cef8499acd7429e8c7b8cf92215a, type: 2}
+  data: {fileID: 11400000, guid: 0a5d7ac201a614d4dae27a44399399c7, type: 2}

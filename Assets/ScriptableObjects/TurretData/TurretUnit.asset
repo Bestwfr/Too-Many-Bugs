@@ -12,22 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fca972f8ae7464abc15ff035a0b513, type: 3}
   m_Name: TurretUnit
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6348005638595316411, guid: b0d7bab2390e9a74483b63f4bf09b59f, type: 3}
-  ItemName: 
-  ItemCost: 100
-  HealthBoost: 0
-  DamageBoost: 0
-  WaveRequirement: 0
-  IsStackable: 0
-  MaxStack: 0
-  UnitSprite: {fileID: 982776835009995723, guid: 47888b6b9f9f1614cae64fc98191064e, type: 3}
   health: 100
   damage: 10
   range: 10
   fireInterval: 0.5
   bulletSpeed: 8
   bulletLifetime: 3
-  bulletSprite: {fileID: 0}
-  bulletPrefab: {fileID: 3951528738739695065, guid: f4ed991ca1822d64c8c733f8c1924985, type: 3}
-  bulletScale: {x: 1, y: 1}
-  rotationOffset: 0
+  <ProjectilePrefab>k__BackingField: {fileID: 2105167302917884084, guid: a5c263deaf8946c4193940c258071c2a, type: 3}
+  <ProjectileSpeed>k__BackingField: 7
+  <ProjectileLifeTime>k__BackingField: 2
+  <ProjectileKnockBack>k__BackingField: 2

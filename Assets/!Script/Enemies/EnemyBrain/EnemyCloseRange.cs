@@ -1,4 +1,5 @@
-﻿using FlamingOrange.Combat.Damage;
+﻿using System.Collections;
+using FlamingOrange.Combat.Damage;
 using FlamingOrange.Combat.KnockBack;
 using FlamingOrange.Enemies.StateMachine;
 using PurrNet;
@@ -21,6 +22,13 @@ namespace FlamingOrange.Enemies
         {
             base.OnSpawned();
             if (isServer) StateMachine.Initialize(ChaseState);
+        }
+        
+        public override void OnReusedFromPool()
+        {
+            if (!isServer) return;
+
+            StateMachine.Initialize(ChaseState);
         }
 
         [ObserversRpc]

@@ -4,7 +4,7 @@ namespace FlamingOrange
 {
     public interface IUnit
     {
-        void InitializeFromSO(SO_Unit data);
+        void InitializeFromSO(TurretData data);
         void Activate();
     }
 }

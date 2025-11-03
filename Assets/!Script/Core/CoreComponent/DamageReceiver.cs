@@ -19,6 +19,9 @@ namespace FlamingOrange.CoreSystem
             if (!CanTakeDamage) return;
             
             _stats.Comp?.ApplyDamage(data.Amount);
+            
+            if (!damageParticles) return;
+            
             ShowDamageParticles(data);
         }
 

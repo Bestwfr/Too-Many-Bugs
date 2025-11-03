@@ -6,6 +6,7 @@ namespace FlamingOrange
     [CreateAssetMenu(fileName = "Item", menuName = "Item/Shop")]
     public abstract class ItemData : ScriptableObject
     {
+        [ShowAssetPreview]
         public Sprite Icon;
         public string ItemName;
         public int ItemCost;

@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      luck creature-idle_0: 4096136096914558765
+      luck creature-idle_1: -1178855630929873426
+      luck creature-idle_2: -9020363518490402832
+      luck creature-idle_3: 117948942784909784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

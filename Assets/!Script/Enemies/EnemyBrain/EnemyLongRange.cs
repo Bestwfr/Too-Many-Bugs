@@ -1,4 +1,6 @@
-﻿using FlamingOrange.Enemies.StateMachine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using FlamingOrange.Enemies.StateMachine;
 using PurrNet;
 using UnityEngine;
 
@@ -23,6 +25,13 @@ namespace FlamingOrange.Enemies
             base.OnSpawned();
             if (isServer) StateMachine.Initialize(ChaseState);
         }
+        
+        public override void OnReusedFromPool()
+        {
+            if (!isServer) return;
+
+            StateMachine.Initialize(ChaseState);
+        }
 
         public override void AllRangeCheck()
         {
@@ -37,6 +46,7 @@ namespace FlamingOrange.Enemies
         
         public void ShootAtTarget()
         {
+            if (Target.value == null) return;
             var direction = Target.value.transform.position - transform.position;
             var projectile = Instantiate(Data.ProjectilePrefab.GetComponent<EnemyProjectile>(), transform.position, Quaternion.identity);
             
