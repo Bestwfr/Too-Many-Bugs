@@ -1,5 +1,6 @@
 ﻿using FlamingOrange.Combat.Damage;
 using UnityEngine;
+using FirstGearGames.SmoothCameraShaker;
 
 namespace FlamingOrange.Tools.Components
 {
@@ -18,6 +19,8 @@ namespace FlamingOrange.Tools.Components
                     damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount, Core.Root,_movement.GetFacingDirection()));
                 }
             }
+
+            CameraShakerHandler.Shake(data.ShakeData);
         }
 
         protected override void Start()

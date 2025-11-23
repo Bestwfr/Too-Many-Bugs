@@ -84,6 +84,7 @@ MonoBehaviour:
           <Amount>k__BackingField: 10
         - name: Attack 2
           <Amount>k__BackingField: 10
+        <ShakeData>k__BackingField: {fileID: 11400000, guid: ec839ec936a1d564d9e1e963b4de1db9, type: 2}
     - rid: 1340176332512559394
       type: {class: KnockBackData, ns: FlamingOrange.Tools.Components, asm: FlamingOrange.Script}
       data:

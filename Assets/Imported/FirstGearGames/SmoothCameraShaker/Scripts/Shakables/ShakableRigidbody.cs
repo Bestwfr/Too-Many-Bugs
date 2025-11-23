@@ -8,7 +8,7 @@ namespace FirstGearGames.SmoothCameraShaker
 {
 
 
-    public class ShakableRigidbody2D : ShakableBase
+    public class ShakableRigidbody : ShakableBase
     {
         #region Types.
         /// <summary>
@@ -16,7 +16,7 @@ namespace FirstGearGames.SmoothCameraShaker
         /// </summary>
         private class RigidbodyData
         {
-            public RigidbodyData(Rigidbody2D rb)
+            public RigidbodyData(Rigidbody rb)
             {
                 Rigidbody = rb;
             }
@@ -24,7 +24,7 @@ namespace FirstGearGames.SmoothCameraShaker
             /// <summary>
             /// Rigidbody on this object.
             /// </summary>
-            public readonly Rigidbody2D Rigidbody;
+            public readonly Rigidbody Rigidbody;
             /// <summary>
             /// Direction to multiply position by at random intervals.
             /// </summary>
@@ -64,24 +64,24 @@ namespace FirstGearGames.SmoothCameraShaker
             /// <summary>
             /// Positional values last time shake offsets were received.
             /// </summary>
-            public Vector2 LastPositional { get; private set; } = Vector2.zero;
+            public Vector3 LastPositional { get; private set; } = Vector3.zero;
             /// <summary>
             /// Sets the value for LastPositional.
             /// </summary>
             /// <param name="value"></param>
-            public void SetLastPositional(Vector2 value)
+            public void SetLastPositional(Vector3 value)
             {
                 LastPositional = value;
             }
             /// <summary>
             /// Rotational values last time shake offsets were received.
             /// </summary>
-            public float LastRotational { get; private set; } = 0f;
+            public Vector3 LastRotational { get; private set; } = Vector3.zero;
             /// <summary>
             /// Sets the value for LastRotational.
             /// </summary>
             /// <param name="value"></param>
-            public void SetLastRotational(float value)
+            public void SetLastRotational(Vector3 value)
             {
                 LastRotational = value;
             }
@@ -171,6 +171,7 @@ namespace FirstGearGames.SmoothCameraShaker
             else if (!_requireInView)
                 ChangeSubscription(true);
         }
+
         private void OnDisable()
         {
             if (_requireInView && _inView)
@@ -199,10 +200,10 @@ namespace FirstGearGames.SmoothCameraShaker
             //If not including children.
             if (!_includeChildren)
             {
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                Rigidbody rb = GetComponent<Rigidbody>();
                 if (rb == null)
                 {
-                    Debug.LogWarning("Rigidbody is empty on " + gameObject.name + ". Shakable will not function.", this);
+                    Debug.LogWarning("Rigidbody is empty on " + gameObject.name + ". Shakable will be destroyed.", this);
                     DestroyImmediate(this);
                     return;
                 }
@@ -213,11 +214,11 @@ namespace FirstGearGames.SmoothCameraShaker
             //Include children.
             else
             {
-                List<Rigidbody2D> rbs = new List<Rigidbody2D>();
+                List<Rigidbody> rbs = new List<Rigidbody>();
                 Transforms.GetComponentsInChildren(transform, rbs, !_ignoreSelf, _includeInactive);
                 if (rbs.Count == 0)
                 {
-                    Debug.LogWarning("No rigidbodies exist on parent or children of " + gameObject.name + ". Shakable will not function.", this);
+                    Debug.LogWarning("No rigidbodies exist on parent or children of " + gameObject.name + ". Shakable will be destroyed.", this);
                     DestroyImmediate(this);
                     return;
                 }
@@ -241,7 +242,7 @@ namespace FirstGearGames.SmoothCameraShaker
             }
         }
 
-        #region OnShakeUpdates.
+        #region OnShakeUpdate.
         /// <summary>
         /// Received every fixed update a shake occurs. Contains the shake values from last update.
         /// </summary>
@@ -276,15 +277,18 @@ namespace FirstGearGames.SmoothCameraShaker
                 CheckRandomizeRandomers(_rbData[i]);
 
                 //Calculate new offsets.
-                Vector2 newPos = obj.Objects.Position * _rbData[i].RandomPositionMultiplier * _positionalMultiplier;
-                float newRot = obj.Objects.Rotation.z * _rbData[i].RandomRotationMultiplier * _rotationalMultiplier;
+                Vector3 newPos = obj.Objects.Position * _rbData[i].RandomPositionMultiplier * _positionalMultiplier;
+                Vector3 newRot = obj.Objects.Rotation * _rbData[i].RandomRotationMultiplier * _rotationalMultiplier;
                 //If to localize force.
                 if (_localizeShake)
+                {
                     newPos = _rbData[i].Rigidbody.transform.TransformDirection(newPos);
+                    newRot = _rbData[i].Rigidbody.transform.TransformDirection(newRot);
+                }
 
                 //Apply force.
-                _rbData[i].Rigidbody.AddForce(newPos - _rbData[i].LastPositional, ForceMode2D.Impulse);
-                _rbData[i].Rigidbody.AddTorque(newRot - _rbData[i].LastRotational, ForceMode2D.Impulse);
+                _rbData[i].Rigidbody.AddForce(newPos - _rbData[i].LastPositional, ForceMode.Impulse);
+                _rbData[i].Rigidbody.AddTorque(newRot - _rbData[i].LastRotational, ForceMode.Impulse);
                 //Set last values.
                 _rbData[i].SetLastPositional(newPos);
                 _rbData[i].SetLastRotational(newRot);
@@ -306,9 +310,9 @@ namespace FirstGearGames.SmoothCameraShaker
                 data.SetNextRandomizeTime(Time.time + Random.Range(3f, 7f));
 
             /* If new random multipliers or velocity is zero then randomize multipliers. */
-            if (newRandomize || data.Rigidbody.velocity == Vector2.zero)
+            if (newRandomize || data.Rigidbody.linearVelocity == Vector3.zero)
                 data.SetRandomPositionMultiplier(Floats.RandomlyFlip(data.RandomPositionMultiplier));
-            if (newRandomize || data.Rigidbody.angularVelocity == 0f)
+            if (newRandomize || data.Rigidbody.angularVelocity == Vector3.zero)
                 data.SetRandomRotationMultiplier(Floats.RandomlyFlip(data.RandomRotationMultiplier));
         }
 

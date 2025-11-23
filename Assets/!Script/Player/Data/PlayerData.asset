@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9949ddd70a45d8975834bae7dd09b5, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  movementVelocity: 10
+  movementVelocity: 15
   dashCooldown: 0.32
-  dashVelocity: 16
-  dashDuration: 0.25
-  dashDrag: 1
+  dashVelocity: 40
+  dashDuration: 0.2
+  dashDrag: 2
   attackDrag: 10
